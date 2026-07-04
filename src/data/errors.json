@@ -60,7 +60,13 @@
     "confusionScore": 2,
     "frequencyScore": 10,
     "fixComplexityScore": 1,
-    "relatedTechnologies": ["TypeScript", "JavaScript", "C", "C++", "Java"]
+    "relatedTechnologies": [
+      "TypeScript",
+      "JavaScript",
+      "C",
+      "C++",
+      "Java"
+    ]
   },
   {
     "id": "missing_module",
@@ -125,7 +131,14 @@
     "confusionScore": 8,
     "frequencyScore": 10,
     "fixComplexityScore": 3,
-    "relatedTechnologies": ["TypeScript", "JavaScript", "Node.js", "npm", "Webpack", "Vite"]
+    "relatedTechnologies": [
+      "TypeScript",
+      "JavaScript",
+      "Node.js",
+      "npm",
+      "Webpack",
+      "Vite"
+    ]
   },
   {
     "id": "undefined_variable",
@@ -191,7 +204,157 @@
     "confusionScore": 4,
     "frequencyScore": 9,
     "fixComplexityScore": 2,
-    "relatedTechnologies": ["TypeScript", "JavaScript", "ESLint", "Python", "React"]
+    "relatedTechnologies": [
+      "TypeScript",
+      "JavaScript",
+      "ESLint",
+      "Python",
+      "React"
+    ]
+  },
+  {
+    "id": "array_out_of_bounds",
+    "patterns": [
+      "IndexError: list index out of range",
+      "ArrayIndexOutOfBoundsException",
+      "Cannot read propert(?:y|ies) of undefined \\(reading '(\\d+)'\\)",
+      "RangeError: Invalid array length",
+      "undefined is not an object \\(evaluating",
+      "Index out of bounds",
+      "TypeError: Cannot read properties of undefined \\(reading '(\\d+)'\\)",
+      "List index out of range"
+    ],
+    "title": "Array Out Of Bounds",
+    "emoji": "OffEdge",
+    "category": "TypeError",
+    "beginnerExplanation": "You tried to access an array element at an index that doesn't exist — usually because the array is shorter than you think, or you used `array.length` instead of `array.length - 1`.",
+    "likelyFixes": [
+      "console.log the array's `.length` right before the failing line.",
+      "Use `array[array.length - 1]` for the last item, not `array[array.length]`.",
+      "Add a bounds check: `if (i < arr.length) { ... }`.",
+      "Use `.at(-1)` (modern JS) or `array[array.length - 1]` for the last item.",
+      "For `map`/`filter` chains: log intermediate arrays — one might be empty."
+    ],
+    "responses": {
+      "marathi": [
+        "Bhau, hi index array chya baher ahe— length check kar.",
+        "List aiti item ghetla, pan listat charuch nahi— IndexError.",
+        "Bhau, array.length ahe, pan array.length-1 pahije— last item.",
+        "Index out of bounds— ek cup chai ghe, length console.log kar.",
+        "Bhau, hi array rikami aahe, pan tumhi item shodhta— kase?",
+        "Loop cha index 0 pasun chalu, length paryant— rule bagh.",
+        "Bhau, hi index negative ahe? Array madhye negative index nahi.",
+        "Array cha last item pahije? .at(-1) vapr, bhau.",
+        "Bhau, hi value undefined aahe, kyunki index chukla.",
+        "Array out of bounds— compiler la confusion nahi, tuze code la ahe."
+      ],
+      "hindi": [
+        "Bhai, yeh index array ke bahar hai— length check kar.",
+        "List mein aathva item liya, par list mein chaar hi nahi— IndexError.",
+        "Bhai, array.length hai, par array.length-1 chahiye— last item.",
+        "Index out of bounds— ek cup chai le, length console.log kar.",
+        "Bhai, yeh array khali hai, par tum item dhoondhte ho— kaise?",
+        "Loop ka index 0 se shuru, length tak— rule dekh.",
+        "Bhai, yeh index negative hai? Array mein negative index nahi.",
+        "Array ka last item chahiye? .at(-1) use kar, bhai.",
+        "Bhai, yeh value undefined hai, kyunki index galat hai.",
+        "Array out of bounds— compiler ko confusion nahi, tumhare code ko hai."
+      ],
+      "english": [
+        "Bhau, that index walked off the edge of the array.",
+        "You asked for item 8 in a 4-item array. Arrays don't stretch.",
+        "Bhau, the last index is `length - 1`. Not `length`. Never `length`.",
+        "console.log(arr.length) before the failing line. See the truth.",
+        "Bhau, empty array + index access = guaranteed undefined.",
+        "Loops start at 0, end at length - 1. That's the rule, bhau.",
+        "Negative index? Use `.at(-1)`. Don't subtract from length.",
+        "Bhau, if `arr[i]` is undefined, `i` is wrong. Check it.",
+        "Array bounds: where optimism meets reality.",
+        "Bhau, your index is bigger than your array. Math doesn't lie."
+      ]
+    },
+    "confusionScore": 4,
+    "frequencyScore": 9,
+    "fixComplexityScore": 3,
+    "relatedTechnologies": [
+      "JavaScript",
+      "TypeScript",
+      "Python",
+      "Java",
+      "C#"
+    ]
+  },
+  {
+    "id": "promise_rejection",
+    "patterns": [
+      "UnhandledPromiseRejectionWarning",
+      "Unhandled \\(in promise\\)",
+      "TypeError: Cannot read propert(?:y|ies) of undefined \\(reading 'then'\\)",
+      "is not a promise",
+      "Promise rejection",
+      "Async function.*reject",
+      "TypeError: .* is not async",
+      "Error:.*promise"
+    ],
+    "title": "Promise Rejection",
+    "emoji": "BrokenHandshake",
+    "category": "TypeError",
+    "beginnerExplanation": "A Promise rejected but you didn't catch it, or you called `.then()` on something that isn't a Promise. Async code needs `await` + `try/catch` or `.then().catch()`.",
+    "likelyFixes": [
+      "Wrap your `await` calls in `try/catch` blocks.",
+      "Always add `.catch()` to `.then()` chains.",
+      "Check that the function you're awaiting actually returns a Promise.",
+      "Add `async` to the function that uses `await`.",
+      "Listen for `process.on('unhandledRejection', ...)` to catch strays in Node."
+    ],
+    "responses": {
+      "marathi": [
+        "Bhau, hi promise reject zali, pan tumhi catch nahi kela.",
+        "Await vaprta, pan function async nahi— bhau, fix kar.",
+        "Bhau, .then() var .catch() nahi— radnar, thev na.",
+        "Promise reject zala, pan koni handle nahi kela— bhau?",
+        "Async function la await nahi— control flow radtoy.",
+        "Bhau, try/catch vapr, mag promise reject pan chamtkar nahi.",
+        "Unhandled promise— Node console red karto, fix kar.",
+        "Bhau, hi value promise nahi, pan tumhi .then() karta— kase?",
+        "Promise chain adhich todi, pan error nahi pakaDla— bhau.",
+        "Async/await cha rule bagh— try/catch garaj, bhau."
+      ],
+      "hindi": [
+        "Bhai, yeh promise reject hua, par tum catch nahi kiya.",
+        "Await use karte, par function async nahi— bhai, fix kar.",
+        "Bhai, .then() par .catch() nahi— roega, rakh na.",
+        "Promise reject hua, par kisi ne handle nahi kiya— bhai?",
+        "Async function ko await nahi— control flow ro raha hai.",
+        "Bhai, try/catch use kar, phir promise reject bhi chamatkar nahi.",
+        "Unhandled promise— Node console red karta hai, fix kar.",
+        "Bhai, yeh value promise nahi, par tum .then() karte ho— kaise?",
+        "Promise chain pehle todi, par error nahi pakda— bhai.",
+        "Async/await ka rule dekh— try/catch garaz, bhai."
+      ],
+      "english": [
+        "Bhau, your promise rejected. Where's the catch?",
+        "Using `await` in a non-async function? Bhau, add `async`.",
+        "Every `.then()` deserves a `.catch()`. They're a couple, bhau.",
+        "Promise rejected silently. Now Node is screaming.",
+        "Bhau, async code without error handling is a ticking bomb.",
+        "Wrap awaits in try/catch. Your future self will thank you.",
+        "Bhau, unhandled rejections can crash Node 15+. Catch them.",
+        "Calling `.then()` on a non-Promise? It returns undefined. Bhau.",
+        "Bhau, promises are commitments. If they fail, you need a backup plan.",
+        "async/await + try/catch = the only correct pattern. Bhau, learn it."
+      ]
+    },
+    "confusionScore": 7,
+    "frequencyScore": 8,
+    "fixComplexityScore": 5,
+    "relatedTechnologies": [
+      "JavaScript",
+      "TypeScript",
+      "Node.js",
+      "React",
+      "async/await"
+    ]
   },
   {
     "id": "null_reference",
@@ -205,7 +368,9 @@
       "Attempted to dereference a null object",
       "is null \\(_NULL_POINTER_\\)",
       "AttributeError: 'NoneType' object has no attribute",
-      "Cannot destructure property '([\\w]+)' of (?:null|undefined)"
+      "Cannot destructure property '([\\w]+)' of (?:null|undefined)",
+      "is possibly 'undefined'",
+      "TS18048"
     ],
     "title": "Null Reference",
     "emoji": "EmptyBox",
@@ -259,7 +424,14 @@
     "confusionScore": 6,
     "frequencyScore": 10,
     "fixComplexityScore": 4,
-    "relatedTechnologies": ["TypeScript", "JavaScript", "Java", "C#", "Python", "React"]
+    "relatedTechnologies": [
+      "TypeScript",
+      "JavaScript",
+      "Java",
+      "C#",
+      "Python",
+      "React"
+    ]
   },
   {
     "id": "type_error",
@@ -273,7 +445,12 @@
       "Cannot assign to read only property",
       "is not a constructor",
       "Cannot convert undefined or null to object",
-      "TS2367: This condition will always return"
+      "TS2367: This condition will always return",
+      "Property .* does not exist on type",
+      "TS2339",
+      "TS7006",
+      "TS7031",
+      "implicitly has an 'any' type"
     ],
     "title": "Type Error",
     "emoji": "Mismatch",
@@ -327,7 +504,13 @@
     "confusionScore": 6,
     "frequencyScore": 10,
     "fixComplexityScore": 4,
-    "relatedTechnologies": ["TypeScript", "JavaScript", "Python", "React", "Node.js"]
+    "relatedTechnologies": [
+      "TypeScript",
+      "JavaScript",
+      "Python",
+      "React",
+      "Node.js"
+    ]
   },
   {
     "id": "syntax_error",
@@ -340,7 +523,8 @@
       "SyntaxError: Unexpected string",
       "SyntaxError: missing ([\\w]+) before statement",
       "SyntaxError: Invalid or unexpected token",
-      "ERROR: ParserError"
+      "ERROR: ParserError",
+      "Unterminated string literal"
     ],
     "title": "Syntax Error",
     "emoji": "BrokenSentence",
@@ -394,7 +578,13 @@
     "confusionScore": 3,
     "frequencyScore": 9,
     "fixComplexityScore": 2,
-    "relatedTechnologies": ["TypeScript", "JavaScript", "Python", "JSON", "Babel"]
+    "relatedTechnologies": [
+      "TypeScript",
+      "JavaScript",
+      "Python",
+      "JSON",
+      "Babel"
+    ]
   },
   {
     "id": "react_hook_violation",
@@ -461,7 +651,11 @@
     "confusionScore": 9,
     "frequencyScore": 8,
     "fixComplexityScore": 7,
-    "relatedTechnologies": ["React", "Next.js", "TypeScript"]
+    "relatedTechnologies": [
+      "React",
+      "Next.js",
+      "TypeScript"
+    ]
   },
   {
     "id": "infinite_loop",
@@ -527,7 +721,13 @@
     "confusionScore": 7,
     "frequencyScore": 6,
     "fixComplexityScore": 5,
-    "relatedTechnologies": ["JavaScript", "TypeScript", "React", "Node.js", "Python"]
+    "relatedTechnologies": [
+      "JavaScript",
+      "TypeScript",
+      "React",
+      "Node.js",
+      "Python"
+    ]
   },
   {
     "id": "build_failure",
@@ -543,7 +743,9 @@
       "exited with code 1",
       "ERROR in .* Module build failed",
       "Type error:",
-      "ERROR in.*error Command failed with exit code"
+      "ERROR in.*error Command failed with exit code",
+      "CrashLoopBackOff",
+      "ENOTFOUND"
     ],
     "title": "Build Failure",
     "emoji": "CraneDown",
@@ -597,7 +799,14 @@
     "confusionScore": 8,
     "frequencyScore": 9,
     "fixComplexityScore": 6,
-    "relatedTechnologies": ["Next.js", "Vite", "Webpack", "TypeScript", "Vercel", "npm"]
+    "relatedTechnologies": [
+      "Next.js",
+      "Vite",
+      "Webpack",
+      "TypeScript",
+      "Vercel",
+      "npm"
+    ]
   },
   {
     "id": "import_error",
@@ -609,7 +818,9 @@
       "does not provide an export named",
       "SyntaxError: Unexpected token 'import'",
       "Module parse failed: Cannot use import statement",
-      "ImportDeclaration must be at top level"
+      "ImportDeclaration must be at top level",
+      "has no exported member",
+      "TS2305"
     ],
     "title": "Import Error",
     "emoji": "WrongDoor",
@@ -663,7 +874,13 @@
     "confusionScore": 5,
     "frequencyScore": 9,
     "fixComplexityScore": 3,
-    "relatedTechnologies": ["TypeScript", "JavaScript", "Node.js", "Babel", "Webpack"]
+    "relatedTechnologies": [
+      "TypeScript",
+      "JavaScript",
+      "Node.js",
+      "Babel",
+      "Webpack"
+    ]
   },
   {
     "id": "export_error",
@@ -728,7 +945,12 @@
     "confusionScore": 4,
     "frequencyScore": 7,
     "fixComplexityScore": 2,
-    "relatedTechnologies": ["TypeScript", "JavaScript", "Babel", "Node.js"]
+    "relatedTechnologies": [
+      "TypeScript",
+      "JavaScript",
+      "Babel",
+      "Node.js"
+    ]
   },
   {
     "id": "missing_dependency",
@@ -793,7 +1015,13 @@
     "confusionScore": 9,
     "frequencyScore": 10,
     "fixComplexityScore": 6,
-    "relatedTechnologies": ["npm", "yarn", "pnpm", "Node.js", "React"]
+    "relatedTechnologies": [
+      "npm",
+      "yarn",
+      "pnpm",
+      "Node.js",
+      "React"
+    ]
   },
   {
     "id": "api_fetch_failure",
@@ -859,7 +1087,14 @@
     "confusionScore": 6,
     "frequencyScore": 9,
     "fixComplexityScore": 4,
-    "relatedTechnologies": ["JavaScript", "fetch", "axios", "React", "Node.js", "CORS"]
+    "relatedTechnologies": [
+      "JavaScript",
+      "fetch",
+      "axios",
+      "React",
+      "Node.js",
+      "CORS"
+    ]
   },
   {
     "id": "json_parse_error",
@@ -926,139 +1161,13 @@
     "confusionScore": 4,
     "frequencyScore": 8,
     "fixComplexityScore": 2,
-    "relatedTechnologies": ["JSON", "JavaScript", "TypeScript", "fetch", "Node.js"]
-  },
-  {
-    "id": "array_out_of_bounds",
-    "patterns": [
-      "IndexError: list index out of range",
-      "ArrayIndexOutOfBoundsException",
-      "Cannot read propert(?:y|ies) of undefined \\(reading '([\\w]+)'\\)",
-      "RangeError: Invalid array length",
-      "undefined is not an object \\(evaluating",
-      "Index out of bounds",
-      "TypeError: Cannot read properties of undefined \\(reading '([\\w]+)'\\)",
-      "List index out of range"
-    ],
-    "title": "Array Out Of Bounds",
-    "emoji": "OffEdge",
-    "category": "TypeError",
-    "beginnerExplanation": "You tried to access an array element at an index that doesn't exist — usually because the array is shorter than you think, or you used `array.length` instead of `array.length - 1`.",
-    "likelyFixes": [
-      "console.log the array's `.length` right before the failing line.",
-      "Use `array[array.length - 1]` for the last item, not `array[array.length]`.",
-      "Add a bounds check: `if (i < arr.length) { ... }`.",
-      "Use `.at(-1)` (modern JS) or `array[array.length - 1]` for the last item.",
-      "For `map`/`filter` chains: log intermediate arrays — one might be empty."
-    ],
-    "responses": {
-      "marathi": [
-        "Bhau, hi index array chya baher ahe— length check kar.",
-        "List aiti item ghetla, pan listat charuch nahi— IndexError.",
-        "Bhau, array.length ahe, pan array.length-1 pahije— last item.",
-        "Index out of bounds— ek cup chai ghe, length console.log kar.",
-        "Bhau, hi array rikami aahe, pan tumhi item shodhta— kase?",
-        "Loop cha index 0 pasun chalu, length paryant— rule bagh.",
-        "Bhau, hi index negative ahe? Array madhye negative index nahi.",
-        "Array cha last item pahije? .at(-1) vapr, bhau.",
-        "Bhau, hi value undefined aahe, kyunki index chukla.",
-        "Array out of bounds— compiler la confusion nahi, tuze code la ahe."
-      ],
-      "hindi": [
-        "Bhai, yeh index array ke bahar hai— length check kar.",
-        "List mein aathva item liya, par list mein chaar hi nahi— IndexError.",
-        "Bhai, array.length hai, par array.length-1 chahiye— last item.",
-        "Index out of bounds— ek cup chai le, length console.log kar.",
-        "Bhai, yeh array khali hai, par tum item dhoondhte ho— kaise?",
-        "Loop ka index 0 se shuru, length tak— rule dekh.",
-        "Bhai, yeh index negative hai? Array mein negative index nahi.",
-        "Array ka last item chahiye? .at(-1) use kar, bhai.",
-        "Bhai, yeh value undefined hai, kyunki index galat hai.",
-        "Array out of bounds— compiler ko confusion nahi, tumhare code ko hai."
-      ],
-      "english": [
-        "Bhau, that index walked off the edge of the array.",
-        "You asked for item 8 in a 4-item array. Arrays don't stretch.",
-        "Bhau, the last index is `length - 1`. Not `length`. Never `length`.",
-        "console.log(arr.length) before the failing line. See the truth.",
-        "Bhau, empty array + index access = guaranteed undefined.",
-        "Loops start at 0, end at length - 1. That's the rule, bhau.",
-        "Negative index? Use `.at(-1)`. Don't subtract from length.",
-        "Bhau, if `arr[i]` is undefined, `i` is wrong. Check it.",
-        "Array bounds: where optimism meets reality.",
-        "Bhau, your index is bigger than your array. Math doesn't lie."
-      ]
-    },
-    "confusionScore": 4,
-    "frequencyScore": 9,
-    "fixComplexityScore": 3,
-    "relatedTechnologies": ["JavaScript", "TypeScript", "Python", "Java", "C#"]
-  },
-  {
-    "id": "promise_rejection",
-    "patterns": [
-      "UnhandledPromiseRejectionWarning",
-      "Unhandled \\(in promise\\)",
-      "TypeError: Cannot read propert(?:y|ies) of undefined \\(reading 'then'\\)",
-      "is not a promise",
-      "Promise rejection",
-      "Async function.*reject",
-      "TypeError: .* is not async",
-      "Error:.*promise"
-    ],
-    "title": "Promise Rejection",
-    "emoji": "BrokenHandshake",
-    "category": "TypeError",
-    "beginnerExplanation": "A Promise rejected but you didn't catch it, or you called `.then()` on something that isn't a Promise. Async code needs `await` + `try/catch` or `.then().catch()`.",
-    "likelyFixes": [
-      "Wrap your `await` calls in `try/catch` blocks.",
-      "Always add `.catch()` to `.then()` chains.",
-      "Check that the function you're awaiting actually returns a Promise.",
-      "Add `async` to the function that uses `await`.",
-      "Listen for `process.on('unhandledRejection', ...)` to catch strays in Node."
-    ],
-    "responses": {
-      "marathi": [
-        "Bhau, hi promise reject zali, pan tumhi catch nahi kela.",
-        "Await vaprta, pan function async nahi— bhau, fix kar.",
-        "Bhau, .then() var .catch() nahi— radnar, thev na.",
-        "Promise reject zala, pan koni handle nahi kela— bhau?",
-        "Async function la await nahi— control flow radtoy.",
-        "Bhau, try/catch vapr, mag promise reject pan chamtkar nahi.",
-        "Unhandled promise— Node console red karto, fix kar.",
-        "Bhau, hi value promise nahi, pan tumhi .then() karta— kase?",
-        "Promise chain adhich todi, pan error nahi pakaDla— bhau.",
-        "Async/await cha rule bagh— try/catch garaj, bhau."
-      ],
-      "hindi": [
-        "Bhai, yeh promise reject hua, par tum catch nahi kiya.",
-        "Await use karte, par function async nahi— bhai, fix kar.",
-        "Bhai, .then() par .catch() nahi— roega, rakh na.",
-        "Promise reject hua, par kisi ne handle nahi kiya— bhai?",
-        "Async function ko await nahi— control flow ro raha hai.",
-        "Bhai, try/catch use kar, phir promise reject bhi chamatkar nahi.",
-        "Unhandled promise— Node console red karta hai, fix kar.",
-        "Bhai, yeh value promise nahi, par tum .then() karte ho— kaise?",
-        "Promise chain pehle todi, par error nahi pakda— bhai.",
-        "Async/await ka rule dekh— try/catch garaz, bhai."
-      ],
-      "english": [
-        "Bhau, your promise rejected. Where's the catch?",
-        "Using `await` in a non-async function? Bhau, add `async`.",
-        "Every `.then()` deserves a `.catch()`. They're a couple, bhau.",
-        "Promise rejected silently. Now Node is screaming.",
-        "Bhau, async code without error handling is a ticking bomb.",
-        "Wrap awaits in try/catch. Your future self will thank you.",
-        "Bhau, unhandled rejections can crash Node 15+. Catch them.",
-        "Calling `.then()` on a non-Promise? It returns undefined. Bhau.",
-        "Bhau, promises are commitments. If they fail, you need a backup plan.",
-        "async/await + try/catch = the only correct pattern. Bhau, learn it."
-      ]
-    },
-    "confusionScore": 7,
-    "frequencyScore": 8,
-    "fixComplexityScore": 5,
-    "relatedTechnologies": ["JavaScript", "TypeScript", "Node.js", "React", "async/await"]
+    "relatedTechnologies": [
+      "JSON",
+      "JavaScript",
+      "TypeScript",
+      "fetch",
+      "Node.js"
+    ]
   },
   {
     "id": "git_merge_conflict",
@@ -1124,7 +1233,12 @@
     "confusionScore": 9,
     "frequencyScore": 10,
     "fixComplexityScore": 6,
-    "relatedTechnologies": ["Git", "GitHub", "GitLab", "Bitbucket"]
+    "relatedTechnologies": [
+      "Git",
+      "GitHub",
+      "GitLab",
+      "Bitbucket"
+    ]
   },
   {
     "id": "port_in_use",
@@ -1189,7 +1303,14 @@
     "confusionScore": 6,
     "frequencyScore": 8,
     "fixComplexityScore": 4,
-    "relatedTechnologies": ["Node.js", "Express", "Next.js", "Vite", "Linux", "macOS"]
+    "relatedTechnologies": [
+      "Node.js",
+      "Express",
+      "Next.js",
+      "Vite",
+      "Linux",
+      "macOS"
+    ]
   },
   {
     "id": "env_var_missing",
@@ -1253,7 +1374,13 @@
     "confusionScore": 7,
     "frequencyScore": 8,
     "fixComplexityScore": 3,
-    "relatedTechnologies": ["Node.js", "Next.js", "Vite", "dotenv", "React"]
+    "relatedTechnologies": [
+      "Node.js",
+      "Next.js",
+      "Vite",
+      "dotenv",
+      "React"
+    ]
   },
   {
     "id": "db_connection_failure",
@@ -1320,6 +1447,13 @@
     "confusionScore": 7,
     "frequencyScore": 7,
     "fixComplexityScore": 5,
-    "relatedTechnologies": ["PostgreSQL", "MongoDB", "MySQL", "Node.js", "Prisma", "Docker"]
+    "relatedTechnologies": [
+      "PostgreSQL",
+      "MongoDB",
+      "MySQL",
+      "Node.js",
+      "Prisma",
+      "Docker"
+    ]
   }
 ]

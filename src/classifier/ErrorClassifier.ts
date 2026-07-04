@@ -135,7 +135,8 @@ export class ErrorClassifier {
     // synthetic message lets patterns like `TS2307: Cannot find module`
     // match even when only the code is present.
     if (ctx.code !== undefined && ctx.code !== null && ctx.code !== '') {
-      const synthetic = `${ctx.source ?? ''} ${ctx.code} ${ctx.message ?? ''}`.trim();
+      const codeStr = ctx.code !== undefined ? `TS${ctx.code}: ` : '';
+      const synthetic = `${codeStr}${ctx.message ?? ''}`.trim();
       const codeMatch = this.classify(synthetic);
       if (codeMatch) return codeMatch;
     }

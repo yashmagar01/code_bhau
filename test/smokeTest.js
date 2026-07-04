@@ -53,6 +53,16 @@ const CASES = [
   { message: "Only one default export allowed per module.", expectedId: 'export_error' },
   { message: "SyntaxError: Cannot use import statement outside a module", expectedId: 'import_error' },
   { message: "TS1192: Module \"./foo\" has no exported member 'Bar'.", expectedId: 'import_error' },
+  { message: "Type 'string' is not assignable to type 'number'.", code: 2322, source: 'ts', expectedId: 'type_error' },
+  { message: "TypeError: Cannot read properties of undefined (reading '0')", expectedId: 'array_out_of_bounds' },
+  { message: "TypeError: Cannot read properties of undefined (reading 'then')", expectedId: 'promise_rejection' },
+  { message: "Property 'foo' does not exist on type 'Bar'.", code: 2339, expectedId: 'type_error' },
+  { message: "Parameter 'x' implicitly has an 'any' type.", code: 7006, expectedId: 'type_error' },
+  { message: "'user' is possibly 'undefined'.", code: 18048, expectedId: 'null_reference' },
+  { message: "Module 'foo' has no exported member 'bar'.", code: 2305, expectedId: 'import_error' },
+  { message: "SyntaxError: Unterminated string literal", expectedId: 'syntax_error' },
+  { message: "CrashLoopBackOff: back-off 5m0s restarting failed container", expectedId: 'build_failure' },
+  { message: "Error: getaddrinfo ENOTFOUND api.example.com", expectedId: 'build_failure' }
 ];
 
 function main() {
@@ -72,7 +82,7 @@ function main() {
   const failures = [];
 
   for (const c of CASES) {
-    const match = classifier.classifyDiagnostic({ message: c.message });
+    const match = classifier.classifyDiagnostic(c);
     if (!match) {
       fail++;
       failures.push('  [NO MATCH]  "' + c.message + '"  (expected ' + c.expectedId + ')');
