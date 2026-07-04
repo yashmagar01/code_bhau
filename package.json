@@ -1,14 +1,29 @@
 {
   "name": "code-bhau",
   "displayName": "Code Bhau",
-  "description": "Your supportive senior dev bhau — explains errors in Marathi, Hindi & English with beginner-friendly fixes. 100% offline.",
-  "version": "2.0.0",
-  "publisher": "yash magar and aryan pohakar",
+  "description": "Your supportive senior dev bhau — explains errors in Marathi, Hindi & English with beginner-friendly, witty fixes. 100% offline, no APIs, no AI code generation.",
+  "version": "1.0.0",
+  "publisher": "yashmagar",
+  "author": {
+    "name": "Yash Magar",
+    "email": "yashajaymagar10@gmail.com",
+    "url": "https://magar.xyz"
+  },
+  "contributors": [
+    {
+      "name": "Aryan Pohakar",
+      "url": "https://github.com/AryanPohakar20"
+    }
+  ],
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/yashmagar01/code_bhau.git"
   },
+  "bugs": {
+    "url": "https://github.com/yashmagar01/code_bhau/issues"
+  },
+  "homepage": "https://github.com/yashmagar01/code_bhau#readme",
   "engines": {
     "vscode": "^1.74.0"
   },
@@ -25,8 +40,11 @@
     "diagnostics",
     "education",
     "students",
+    "diploma",
     "mentor",
-    "offline"
+    "offline",
+    "maharashtra",
+    "india"
   ],
   "icon": "media/logo.png",
   "galleryBanner": {
@@ -53,7 +71,7 @@
         {
           "id": "codeBhau-view-container",
           "title": "Code Bhau",
-          "icon": "media/logo.png"
+          "icon": "media/sidebar-icon.svg"
         }
       ]
     },
@@ -63,7 +81,7 @@
           "type": "webview",
           "id": "codeBhau.sidebar",
           "name": "Bhau Says",
-          "icon": "media/logo.png",
+          "icon": "media/sidebar-icon.svg",
           "contextualTitle": "Code Bhau"
         }
       ]
@@ -91,8 +109,7 @@
       },
       {
         "command": "codeBhau.copyFix",
-        "title": "Code Bhau: Copy First Suggested Fix"
-        ,
+        "title": "Code Bhau: Copy First Suggested Fix",
         "icon": "$(copy)"
       }
     ],

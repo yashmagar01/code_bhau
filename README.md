@@ -1,21 +1,28 @@
 # Code Bhau <img src="media/logo.png" alt="Code Bhau logo" width="64" height="64" align="right" />
 
+![Version](https://img.shields.io/visual-studio-marketplace/v/yashmagar.code-bhau?color=blue)
+![Installs](https://img.shields.io/visual-studio-marketplace/i/yashmagar.code-bhau)
+![Rating](https://img.shields.io/visual-studio-marketplace/r/yashmagar.code-bhau)
+![License](https://img.shields.io/github/license/yashmagar01/code_bhau)
+
 > **Bhau, party la bolavla pan guest aalach nahi.**
 > A supportive senior dev bhau who explains your errors in Marathi, Hindi & English — 100% offline, no APIs, no AI code generation.
 
-**Code Bhau** is a beginner-friendly programming companion VS Code extension built for diploma students, engineering students, self-taught developers, hackathon participants and first-year programmers. It is **NOT** an AI coding assistant. It does **NOT** generate code. It does **NOT** replace Copilot. It helps students **understand errors** in the same way a senior friend would — with a slightly funny, culturally grounded one-liner, a plain-English explanation, and concrete fixes.
+**Code Bhau** is a beginner-friendly programming companion for diploma students, engineering students, self-taught developers, hackathon participants, and anyone writing their first lines of code. It is **NOT** an AI coding assistant. It does **NOT** generate code. It does **NOT** replace Copilot. It exists for one job: turning a wall of red compiler text into something you actually understand — in your own language, with a joke that makes you laugh instead of a message that makes you want to quit.
 
 ---
 
-## Why Code Bhau?
+## Why we built this
 
-Traditional compiler messages prioritize machine-state accuracy over human cognitive processing. When a first-year student sees:
+Most first-time programmers don't quit because coding is too hard. They quit because the *error messages* are written for people who already know what they mean. A first-year diploma student in Maharashtra staring at:
 
 ```
 TS2307: Cannot find module 'axios' or its corresponding type declarations.
 ```
 
-…they see a wall of noise. Code Bhau intercepts that message and turns it into:
+isn't confused because the concept is hard — they're confused because nobody translated it for them yet. So we built the translator.
+
+Code Bhau intercepts that exact message and turns it into:
 
 > **Missing Package**
 >
@@ -28,97 +35,63 @@ TS2307: Cannot find module 'axios' or its corresponding type declarations.
 > - Check `package.json` — is the package listed under `dependencies`?
 > - Restart your dev server / TS language server after installing.
 
-That's it. Friendly. Beginner-first. Always supportive, never toxic.
+Same information a senior dev would give you — just delivered like a senior dev would actually say it to you, in your mother tongue, without making you feel dumb for asking.
+
+---
+
+## Who this is for
+
+1. **First-time programmers** — literally anyone who just wrote their first `for` loop
+2. **Diploma & engineering students** across Maharashtra and India, learning in a mix of English coursework and a Marathi/Hindi-speaking classroom reality
+3. **Self-taught developers and hackathon participants** who need a fast, judgment-free explanation at 2 AM with no internet-search detour required
+
+Built broadly for beginner programmers across India — with Marathi as the default voice, because that's who we built it for first.
 
 ---
 
 ## Features
 
-### Phase 2 MVP
-
 | Feature | Status |
 |---|---|
-| **Error Detection** — captures TypeScript, JavaScript, React, Node, ESLint, JSON diagnostics via `vscode.languages.onDidChangeDiagnostics` | ✅ |
-| **Error Classification Engine** — `ErrorClassifier` class with regex matching | ✅ |
-| **Local Error Database** — 20 error families, 600 responses (10 per language × 3 languages), `src/data/errors.json` | ✅ |
+| **Error Detection** — captures TypeScript, JavaScript, React, Node, Python, Go, Java, JSON diagnostics via `vscode.languages.onDidChangeDiagnostics` | ✅ |
+| **Error Classification Engine** — pure-TypeScript regex classifier, no `vscode` dependency, fully unit-testable | ✅ |
+| **Local Error Database** — 20 error families, 600 hand-written responses (10 per language × 3 languages), bundled in `src/data/errors.json` | ✅ |
 | **Language Modes** — Marathi (default), Hindi, English via `codeBhau.language` setting | ✅ |
-| **Random Contextual Responses** — anti-repetition selector remembers last N picks per family | ✅ |
-| **Hover UI** — `MarkdownString` hover with title, response, meaning, fixes, taxonomy footer | ✅ |
-| **Side Panel** — activity-bar webview with live error display, copy-to-clipboard fixes | ✅ |
-| **Demo command** — sample error picker for testing without writing bad code | ✅ |
-
-### Categories (MVP)
-
-1. `Syntax` — missing semicolons, syntax errors, JSON parse errors, export errors
-2. `UndefinedVariable` — `ReferenceError`, `TS2304`, ESLint `no-undef`
-3. `NullReference` — `TypeError: Cannot read properties of null/undefined`, NPE
-4. `MissingModule` — `Cannot find module`, import errors, dependency conflicts
-5. `ReactHooks` — `Rendered fewer/more hooks`, Minified React #321
-6. `TypeError` — type mismatches, array bounds, promise rejections
-7. `BuildFailure` — npm errors, build failures, infinite loops, fetch failures, port conflicts, env var missing, DB connection failures, git conflicts
-8. `LintError` — reserved for future ESLint-only families
+| **Anti-Repetition Engine** — remembers your last several responses per error family so the same joke doesn't repeat back-to-back | ✅ |
+| **Hover UI** — inline explanation the moment you hover a red squiggle | ✅ |
+| **Sidebar Panel** — activity-bar webview with the full breakdown and one-click copy of the fix | ✅ |
+| **Demo Command** — try Code Bhau on sample errors without writing broken code first | ✅ |
 
 ### Error Families (20)
 
 `missing_semicolon`, `missing_module`, `undefined_variable`, `null_reference`, `type_error`, `syntax_error`, `react_hook_violation`, `infinite_loop`, `build_failure`, `import_error`, `export_error`, `missing_dependency`, `api_fetch_failure`, `json_parse_error`, `array_out_of_bounds`, `promise_rejection`, `git_merge_conflict`, `port_in_use`, `env_var_missing`, `db_connection_failure`.
 
-Each family ships with **10 witty responses in each of Marathi, Hindi and English** (600 total) — no response repeats until at least 5 others have been shown.
-
----
-
-## Architecture
-
-```
-src/
- ├── extension.ts                  ← activation, diagnostics listener, commands
- ├── classifier/
- │    └── ErrorClassifier.ts       ← regex engine, pure TS (no vscode import)
- ├── providers/
- │    ├── HoverProvider.ts         ← MarkdownString hover UI
- │    └── SidebarProvider.ts       ← webview activity-bar panel
- ├── data/
- │    └── errors.json              ← 20 families × 30 responses + metadata
- ├── models/
- │    └── ErrorModel.ts            ← ErrorEntry, ErrorMatch, DiagnosticContext, etc.
- └── utils/
-      └── ResponseSelector.ts      ← language-aware random picker
-```
-
-### Design Principles
-
-1. **100% offline.** No HTTP calls, no telemetry, no AI APIs. The errors database is bundled into the .vsix.
-2. **Classifier is pure TypeScript.** `ErrorClassifier` does not import `vscode`, so it is fully unit-testable in plain Node.
-3. **Resilient to bad data.** A single malformed regex in `errors.json` is skipped with a console warning — the extension never crashes.
-4. **Order-preserving matches.** The first matching entry wins. High-confidence families should be listed first.
-5. **Personality rules enforced at content level.** Every response in `errors.json` has been written to be supportive, friendly, and culturally grounded — never toxic, insulting, or abusive.
-
 ---
 
 ## Installation
 
-### From source (development)
+**From the Marketplace** (once published):
+
+1. Open VS Code → Extensions (`Ctrl+Shift+X` / `Cmd+Shift+X`)
+2. Search **"Code Bhau"**
+3. Click Install
+
+**From source:**
 
 ```bash
-git clone https://github.com/codebhau/code-bhau.git
-cd code-bhau
+git clone https://github.com/yashmagar01/code_bhau.git
+cd code_bhau
 npm install
 npm run compile
 ```
 
-Then press `F5` in VS Code to launch an Extension Development Host with Code Bhau active.
+Press `F5` in VS Code to launch an Extension Development Host with Code Bhau active.
 
-### Package as .vsix
-
-```bash
-npm install
-npm run compile
-npm run package     # produces code-bhau-2.0.0.vsix
-```
-
-Install locally:
+**As a `.vsix` file:**
 
 ```bash
-code --install-extension code-bhau-2.0.0.vsix
+npm run package     # produces code-bhau-1.0.0.vsix
+code --install-extension code-bhau-1.0.0.vsix
 ```
 
 ---
@@ -143,10 +116,10 @@ Open VS Code Settings → Extensions → Code Bhau, or edit `settings.json`:
 | Command | Keybinding | Description |
 |---|---|---|
 | `Code Bhau: Show Latest Error` | `Ctrl+Shift+B` / `Cmd+Shift+B` | Refresh the sidebar with the active editor's most severe error. |
-| `Code Bhau: Demo With a Sample Error` | `Ctrl+Shift+Alt+B` | Pick a sample error from a quick-pick to demo Code Bhau. |
+| `Code Bhau: Demo With a Sample Error` | `Ctrl+Shift+Alt+B` | Pick a sample error to demo Code Bhau without writing broken code. |
 | `Code Bhau: Refresh Latest Error` | — | Same as Show Latest. |
 | `Code Bhau: Switch Language` | — | Quick-pick to switch response language. |
-| `Code Bhau: Copy First Suggested Fix` | — | Copy the first fix from the active file's most severe error to the clipboard. |
+| `Code Bhau: Copy First Suggested Fix` | — | Copy the top fix from the active file's most severe error. |
 
 ---
 
@@ -154,51 +127,56 @@ Open VS Code Settings → Extensions → Code Bhau, or edit `settings.json`:
 
 Code Bhau is always:
 
-- ✅ **Supportive** — never makes the student feel dumb
-- ✅ **Slightly funny** — uses Marathi-Hindi-English code-switching and Pune cultural references (chai, vada pav, local train, party)
-- ✅ **Friendly mentor / older brother** — like a senior dev friend sitting next to you
+- ✅ **Supportive** — never makes you feel dumb for not knowing
+- ✅ **Witty, not corny** — Marathi-Hindi-English code-switching, Pune/Maharashtra cultural references (chai, vada pav, local train, party analogies)
+- ✅ **A friendly senior, not a lecture** — the tone of the classmate who's one year ahead and actually explains things
 
 Code Bhau is never:
 
-- ❌ **Toxic, insulting, abusive, or swearing**
-- ❌ **AI code generation** — it explains, never writes code for you
-- ❌ **A Copilot replacement** — different purpose entirely
+- ❌ Toxic, insulting, or abusive
+- ❌ Writing code for you — it explains, it doesn't generate
+- ❌ A Copilot replacement — different job entirely
 
-**Good examples:**
+**In the spirit of what we mean:**
 > "Bhau, semicolon suttivar gelay ka? ; tak na."
 > "Variable cha nav ghetla pan introduce nahi kela."
 > "Compiler la pan confusion zala."
 
-**Forbidden examples:**
-> ~~"Tu idiot ahes."~~
-> ~~"This code is garbage."~~
-
-Every one of the 600 responses in `errors.json` has been hand-written to respect these rules.
+Every one of the 600 responses is hand-written to stay inside these rules — no AI-generated jokes, so the voice stays consistent and consistently kind.
 
 ---
 
 ## Roadmap
 
-### Phase 2 (this release)
-- 20 error families, 600 responses, hover + sidebar, three languages.
+**Now (v1.0.0):** 20 error families, 600 responses, hover + sidebar, three languages, offline-first.
 
-### Phase 3 (planned)
-- Expand to 100+ error families (targeting the 1,000-pattern goal from the Code Bhau Error Taxonomy research).
-- Beginner Confusion Score-aware tone adaptation — high-confusion errors (CORS, Kubernetes CrashLoopBackOff, Postgres deadlocks) get longer, deeper explanations.
-- User-supplied custom errors via `~/.codebhau/custom-errors.json`.
-- Per-language response packs (Gujarati, Telugu, Tamil, Bengali).
-- Telemetry-opt-in frequency tracking (anonymous, local-only) so the most-encountered errors rise to the top of the database.
+**Next:**
+- Expand error family coverage toward the most common real-world TypeScript/JavaScript/Python errors beginners actually hit
+- More Indian language packs — Aryan is actively working on localized response sets beyond Marathi/Hindi/English
+- Community-contributed error patterns via GitHub Issues/PRs (see below)
+
+We're deliberately keeping this list short and honest — everything on it is something we're actually committing to, not a wishlist.
+
+---
+
+## Contributing
+
+This is an early, actively-growing project, and we'd genuinely like help. If you've hit a confusing compiler error that Code Bhau didn't catch, or you speak a language we haven't covered yet and want to help write response packs, **open an issue or a PR** — this is exactly the kind of project that gets better with more contributors from the community it's built for.
+
+👉 [github.com/yashmagar01/code_bhau](https://github.com/yashmagar01/code_bhau)
 
 ---
 
 ## License
 
-MIT © Code Bhau contributors. Made with chai in Pune, Maharashtra.
+MIT © 2026 Yash Magar. See [LICENSE](LICENSE).
 
 ---
 
 ## Credits
 
-- Error taxonomy research: Code Bhau Error Taxonomy whitepaper (11-category matrix, Beginner Confusion / Frequency / Fix Complexity scores).
-- Market positioning: Code Bhau Market Analysis & Product Strategy.
-- Personality inspiration: every senior dev in Pune who ever said *"Bhau, ek cup chai ghe, punha bagh."*
+- **Yash Magar** — creator, extension architecture & error classification engine — [LinkedIn](https://www.linkedin.com/in/yash-magar/) · [GitHub](https://github.com/yashmagar01) · [magar.xyz](https://magar.xyz)
+- **Aryan Pohakar** — co-founder & supporter, localized response packs across languages — [LinkedIn](https://www.linkedin.com/in/aryan-pohakar/) · [GitHub](https://github.com/AryanPohakar20)
+- Made with chai in Maharashtra, for every beginner programmer who almost gave up on a Tuesday night because of a missing semicolon.
+
+**Questions, bugs, or a joke idea that's too good not to include?** Open an issue on GitHub, or reach out at yashajaymagar10@gmail.com.

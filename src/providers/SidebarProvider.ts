@@ -50,9 +50,7 @@ export class SidebarProvider implements vscode.WebviewViewProvider {
 
     webviewView.webview.options = {
       enableScripts: true,
-      // The webview doesn't need any local file access — all content
-      // is generated in-process and posted as JSON.
-      localResourceRoots: [],
+      localResourceRoots: [vscode.Uri.joinPath(this.extensionUri, 'media')],
       enableForms: false,
     };
 
@@ -126,7 +124,7 @@ export class SidebarProvider implements vscode.WebviewViewProvider {
   // ------------------------------------------------------------------
 
   private getHtml(webview: vscode.Webview): string {
-    // CSP — strict, no remote anything, because Code Bhau is 100% offline.
+    const logoUri = webview.asWebviewUri(vscode.Uri.joinPath(this.extensionUri, 'media', 'logo.png'));
     const nonce = this.getNonce();
 
     return /* html */ `<!DOCTYPE html>
@@ -135,7 +133,7 @@ export class SidebarProvider implements vscode.WebviewViewProvider {
   <meta charset="UTF-8" />
   <meta
     http-equiv="Content-Security-Policy"
-    content="default-src 'none'; style-src 'nonce-${nonce}'; script-src 'nonce-${nonce}';"
+    content="default-src 'none'; img-src ${webview.cspSource}; style-src 'nonce-${nonce}'; script-src 'nonce-${nonce}';"
   />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Code Bhau</title>
@@ -174,8 +172,9 @@ export class SidebarProvider implements vscode.WebviewViewProvider {
       border-bottom: 1px solid var(--bhau-border);
     }
     .header .logo {
-      font-size: 20px;
-      line-height: 1;
+      width: 24px;
+      height: 24px;
+      object-fit: contain;
     }
     .header h1 {
       font-size: 14px;
@@ -360,7 +359,7 @@ export class SidebarProvider implements vscode.WebviewViewProvider {
 </head>
 <body>
   <div class="header">
-    <span class="logo">Bhau</span>
+    <img class="logo" src="${logoUri}" alt="Code Bhau Logo" />
     <h1>Code Bhau</h1>
     <span class="lang-chip" id="lang-chip" title="Click to switch language">—</span>
   </div>
