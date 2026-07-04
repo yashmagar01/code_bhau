@@ -1,0 +1,1325 @@
+[
+  {
+    "id": "missing_semicolon",
+    "patterns": [
+      "'[;]' expected",
+      "Expected ';'",
+      "Parsing error: Unexpected token, expected ;",
+      "Missing semicolon",
+      "Unexpected end of input, expected ;",
+      "Declaration or statement expected"
+    ],
+    "title": "Missing Semicolon",
+    "emoji": "GrammaticalBlip",
+    "category": "Syntax",
+    "beginnerExplanation": "Your code finished a statement but forgot to put a semicolon (;) at the end. The compiler uses it to know the sentence is over.",
+    "likelyFixes": [
+      "Add a `;` at the end of the highlighted line.",
+      "Look one line ABOVE the error — the missing ; is often there.",
+      "Check the last statement in that block, especially after return/if/let.",
+      "Save the file — TypeScript auto-inserts on save if format-on-save is on."
+    ],
+    "responses": {
+      "marathi": [
+        "Bhau, semicolon suttivar gelay ka? ; tak na.",
+        "Ek chota viram chinh visarla ani compiler cha bawa zala.",
+        "Vada pav cha diet ulta, pan semicolon cha diet pudhe theva.",
+        "Bhau, shevati ; tak, compiler la full stop pahije.",
+        "Pudhchi line la thamba, ; bhulala ka?",
+        "Semicolon adhich code madhye javal, tyala sodun de.",
+        "Bagh, compiler la ek 'full stop' pahijech — ; chalel.",
+        "Bhau, itka sampurna code pan ek semicolon sathi radtoy.",
+        "Semicolon nasel tar compiler che don konad radnarach!",
+        "Thamb, ek cup chai ghe, ek ; tak, punha bagh."
+      ],
+      "hindi": [
+        "Bhai, semicolon bhul gaya kya? ; laga de.",
+        "Ek chhota sa punctuation miss kiya, compiler pareshan.",
+        "Vada pav diet toh ulta, semicolon diet aage rakh.",
+        "Bhai, aakhir me ; laga, compiler ko full stop chahiye.",
+        "Aage wali line ko rukne ka mauka de, ; bhula nahi.",
+        "Semicolon pehle code mein aana chahiye, use chhod de.",
+        "Dekh, compiler ko ek 'full stop' chahiye — ; chalega.",
+        "Bhai, itna bada code aur ek semicolon ke liye ro raha hai.",
+        "Semicolon nahi toh compiler ke dono kone ronewale!",
+        "Ruk, ek cup chai le, ek ; laga, phir dekh."
+      ],
+      "english": [
+        "Bhau, did the semicolon slip out of your pocket? Drop one in.",
+        "Compiler is hungry — feed it a ';'.",
+        "One tiny dot-comma and the whole parade stopped.",
+        "You wrote a thesis but forgot the period at the end.",
+        "Semicolon: the smallest guest your compiler refuses to start without.",
+        "Add a ';' — that's the price of admission.",
+        "Imagine ending a sentence mid-word. That's this line right now.",
+        "Bhau, the compiler is not a mind-reader. Give it the ';'.",
+        "It's one keystroke. One. Just one ';'.",
+        "Pause, sip chai, drop a ';' — done."
+      ]
+    },
+    "confusionScore": 2,
+    "frequencyScore": 10,
+    "fixComplexityScore": 1,
+    "relatedTechnologies": ["TypeScript", "JavaScript", "C", "C++", "Java"]
+  },
+  {
+    "id": "missing_module",
+    "patterns": [
+      "Cannot find module ['\"]?([\\w/@.\\-]+)['\"]?",
+      "Module not found",
+      "Error: Cannot find module",
+      "ERR_MODULE_NOT_FOUND",
+      "Failed to resolve module",
+      "Module not found: Error: Can't resolve",
+      "TS2307: Cannot find module"
+    ],
+    "title": "Missing Package",
+    "emoji": "MissingBox",
+    "category": "MissingModule",
+    "beginnerExplanation": "Your code is trying to use a package or file that is not installed in your project. Like inviting a guest who was never on the list.",
+    "likelyFixes": [
+      "Run `npm install <package>` (or `pnpm`/`yarn` equivalent).",
+      "Check `package.json` — is the package listed under `dependencies`?",
+      "Restart your dev server / TS language server after installing.",
+      "Make sure you're running the install command in the correct folder.",
+      "For local files, check the relative path and file extension."
+    ],
+    "responses": {
+      "marathi": [
+        "Bhau, party la bolavla pan guest aalach nahi.",
+        "Package install nahi kela, pan code madhye bolavla— bhau?",
+        "Na bolavlela guest, na aalela guest, pan npmnacha table ready aahe.",
+        "Node_modules madhye bagh, to package adhich sutla ka?",
+        "Bhau, package.json var bagh, konha package miss zala?",
+        "Import karaycha aadhi install kar, mag bhau ban.",
+        "Package koni import kela, pan npm la kalalach nahi— introduction garaj!",
+        "Guest list var nav, pan invitation pathvla— bhau, tyala import kela?",
+        "Npm install sodun code chalu kela, tar compiler na radnar ka?",
+        "Bhau, ek package sathi code chalu, ek sathi npm install— donhi kar."
+      ],
+      "hindi": [
+        "Bhai, party mein bulaya par guest aaya hi nahi.",
+        "Package install nahi kiya, par code mein bula liya— bhai?",
+        "Na bulaya guest, na aaya guest, par npm ka table ready hai.",
+        "Node_modules mein dekh, woh package toh chhoot gaya kya?",
+        "Bhai, package.json par dekh, kaun sa package miss ho gaya.",
+        "Import karne se pehle install kar, phir bhai ban.",
+        "Package kisi ne import kiya, par npm ko hi nahi pata— introduction garaj!",
+        "Guest list par naam nahi, par invitation bhej diya— bhai, import kiya?",
+        "Npm install chhod code chalu kiya, toh compiler na roye kya?",
+        "Bhai, ek package ke liye code, ek ke liye npm install— dono kar."
+      ],
+      "english": [
+        "Bhau, you invited someone to the party who was never on the guest list.",
+        "Your code shouted a name across the room — nobody answered.",
+        "You imported a hero, but the script never hired them.",
+        "Package: Not Installed. Code: Already Calling. Bhau: Confused.",
+        "Imagine calling a friend who isn't saved in your phone. That.",
+        "npm install first, friendship later.",
+        "The package exists in your import line, not in your node_modules. Fix that.",
+        "You can't marry someone you never met. Install them first.",
+        "Bhau, node_modules looks empty. Like a tiffin box without the vada.",
+        "First 'npm install', then 'import'. Always in that order, bhau."
+      ]
+    },
+    "confusionScore": 8,
+    "frequencyScore": 10,
+    "fixComplexityScore": 3,
+    "relatedTechnologies": ["TypeScript", "JavaScript", "Node.js", "npm", "Webpack", "Vite"]
+  },
+  {
+    "id": "undefined_variable",
+    "patterns": [
+      "Cannot find name '([\\w]+)'",
+      "'([\\w]+)' is not defined",
+      "'([\\w]+)' is not defined\\. \\$\\$\\$",
+      "no-undef",
+      "TS2304: Cannot find name",
+      "ReferenceError: ([\\w]+) is not defined",
+      "NameError: name '([\\w]+)' is not defined",
+      "Variable '([\\w]+)' is not declared"
+    ],
+    "title": "Undefined Variable",
+    "emoji": "MissingName",
+    "category": "UndefinedVariable",
+    "beginnerExplanation": "You used a variable name that you never declared. The compiler doesn't know what box you're talking about.",
+    "likelyFixes": [
+      "Check the spelling — a typo turns `userName` into `usreName`.",
+      "Add a `let`, `const` or `var` declaration before using the variable.",
+      "Make sure the variable is declared in the same scope (not in another function).",
+      "If it's an import, check the import statement at the top of the file.",
+      "For globals (like `process` or `Buffer`), install the matching `@types/*` package."
+    ],
+    "responses": {
+      "marathi": [
+        "Bhau, variable cha nav ghetla pan introduce nahi kela.",
+        "Compiler la hi nav kalat nahi— bhau, parichay karav lagel.",
+        "Nav likhun takla, pan tyala janun ghetla nahi— import kiva declare kar.",
+        "Bhau, hi variable tya room madhye nahi, dusrya room madhye aahe.",
+        "Nav visarla ka? Ekdam varkhad pan declar karun ghe.",
+        "Bhau, hi value kuthun ali? Compiler la pan mahiti nahi.",
+        "Variable declare nahi kela, pan vapsar kela— bhau, jodne aadhi ghatti kar.",
+        "Naam toh sahi, pan tyache kuthe aalo mahiti nahi— bhau?",
+        "Bhau, hi variable ghari nahi, dusrya function madhye aahe— import kar.",
+        "Compiler mhante: 'He nav kuthun aale?'— bhau, tyala sang."
+      ],
+      "hindi": [
+        "Bhai, variable ka naam liya par introduce nahi kiya.",
+        "Compiler ko yeh naam nahi pata— bhai, parichay karao padega.",
+        "Naam likh diya, par jaana nahi— import ya declare kar.",
+        "Bhai, yeh variable is room mein nahi, dusre room mein hai.",
+        "Naam bhul gaya kya? Ek baar declare toh kar le.",
+        "Bhai, yeh value kahan se aayi? Compiler ko bhi nahi pata.",
+        "Variable declare nahi kiya, par use kar liya— bhai, pehle jod le.",
+        "Naam sahi hai, par kahan se aaya pata nahi— bhai?",
+        "Bhai, yeh variable ghar mein nahi, dusre function mein hai— import kar.",
+        "Compiler kahta: 'Yeh naam kahan se aaya?'— bhai, use bata."
+      ],
+      "english": [
+        "Bhau, you used a name the compiler has never heard of.",
+        "Imagine calling a stranger by their first name at a wedding. Awkward.",
+        "You referenced a variable. You never declared it. Bhau.",
+        "The compiler is asking: 'Who? I don't know them.'",
+        "Variable not declared, but you used it like an old friend.",
+        "Bhau, spelling check kar — typo turns heroes into ghosts.",
+        "Declare first. Use later. That's the rule of the parade.",
+        "This name lives in another scope. You need to import it.",
+        "Bhau, the variable exists in your head, not in your code.",
+        "Compiler confusion = 100. Reason = undeclared name. Fix = declare it."
+      ]
+    },
+    "confusionScore": 4,
+    "frequencyScore": 9,
+    "fixComplexityScore": 2,
+    "relatedTechnologies": ["TypeScript", "JavaScript", "ESLint", "Python", "React"]
+  },
+  {
+    "id": "null_reference",
+    "patterns": [
+      "Cannot read propert(?:y|ies) of (?:null|undefined)",
+      "Cannot read propert(?:y|ies) of (?:null|undefined) \\(reading '([\\w]+)'\\)",
+      "Cannot read propert(?:y|ies) '([\\w]+)' of (?:null|undefined)",
+      "NullPointerException",
+      "TypeError: null has no properties",
+      "Object reference not set to an instance of an object",
+      "Attempted to dereference a null object",
+      "is null \\(_NULL_POINTER_\\)",
+      "AttributeError: 'NoneType' object has no attribute",
+      "Cannot destructure property '([\\w]+)' of (?:null|undefined)"
+    ],
+    "title": "Null Reference",
+    "emoji": "EmptyBox",
+    "category": "NullReference",
+    "beginnerExplanation": "You tried to read a property or call a method on something that is `null` or `undefined` — like opening an empty tiffin box and expecting a vada.",
+    "likelyFixes": [
+      "Use optional chaining: `user?.name` instead of `user.name`.",
+      "Add a null check before accessing: `if (user) { ... }`.",
+      "Initialize your variables / state with sensible defaults.",
+      "Console.log the variable just before the failing line — see what it actually is.",
+      "Check where the value comes from — an API? An empty array? A skipped render?"
+    ],
+    "responses": {
+      "marathi": [
+        "Bhau, rikami dabba ughadla, pan vada aalach nahi.",
+        "Null var bagh ahe, pan tyat kahich nahi— bhau, tuze code radtoy.",
+        "Rikami chair var basaycha, pan tyat koni nahi— TypeError!",
+        "Bhau, hi value null aahe, pan tumhi method call karta— kase?",
+        "Tiffin rikami, pan jevan shodhita— bhau, null check kar.",
+        "Compiler mhante: 'He khali aahe, pan tumhi var chadhta'— bhau?",
+        "Bhau, ek value null aahe, pan tumhi tyach var bagh ahe.",
+        "Rikami box madhye hath ghalta, pan tyat kaay mitla— null!",
+        "Bhau, null la method shikvaycha? Tyala logic nahi yet.",
+        "Optional chaining (?) vapr, mag null pan chamtkar nahi."
+      ],
+      "hindi": [
+        "Bhai, khali dabba khola, par vada hi nahi.",
+        "Null par dekh raha, par usme kuch nahi— bhai, code ro raha hai.",
+        "Khali kursi par baithna, par usme koi nahi— TypeError!",
+        "Bhai, yeh value null hai, par tum method call karte ho— kaise?",
+        "Tiffin khali, par khana dhoondhta— bhai, null check kar.",
+        "Compiler kahta: 'Yeh khali hai, par tum upar chadhte ho'— bhai?",
+        "Bhai, ek value null hai, par tum usi par dekh rahe ho.",
+        "Khali box mein haath daalta, par usme kya mila— null!",
+        "Bhai, null ko method sikhana? Use logic nahi aata.",
+        "Optional chaining (?) use kar, phir null bhi chamatkar nahi."
+      ],
+      "english": [
+        "Bhau, you opened an empty box and asked for the vada inside.",
+        "Reading a property of null is like calling a friend who doesn't exist.",
+        "Your variable is `null`. You're treating it like a king. Stop.",
+        "Null is empty. Empty has no methods. Bhau, basic physics.",
+        "Bhau, the chair is empty. Don't ask it to stand up.",
+        "Imagine calling `.eat()` on an empty tiffin. That's this code.",
+        "Bhau, the value isn't there yet. Wait, check, then access.",
+        "Use `?.` — the optional chaining superhero. It saves lives.",
+        "Null: the silent guest. Don't ask it to dance.",
+        "Bhau, null is null. It can't `.map()`. It can't `.toUpperCase()`. Nothing."
+      ]
+    },
+    "confusionScore": 6,
+    "frequencyScore": 10,
+    "fixComplexityScore": 4,
+    "relatedTechnologies": ["TypeScript", "JavaScript", "Java", "C#", "Python", "React"]
+  },
+  {
+    "id": "type_error",
+    "patterns": [
+      "TypeError: ([\\w.]+) is not a function",
+      "TypeError: ([\\w.]+) is not iterable",
+      "TypeError: Cannot read propert(?:y|ies) of",
+      "TS2322: Type .* is not assignable to type",
+      "TS2345: Argument of type",
+      "x is not defined",
+      "Cannot assign to read only property",
+      "is not a constructor",
+      "Cannot convert undefined or null to object",
+      "TS2367: This condition will always return"
+    ],
+    "title": "Type Error",
+    "emoji": "Mismatch",
+    "category": "TypeError",
+    "beginnerExplanation": "You're using a value as if it were one type, but it's actually another — like trying to call `.toUpperCase()` on a number, or treat a single object as a list.",
+    "likelyFixes": [
+      "Console.log the value AND its type right before the failing line.",
+      "Check the function signature — what type does it actually expect?",
+      "For arrays, make sure you're not passing a single item where a list is needed.",
+      "For functions, check the import — maybe it's not actually a function.",
+      "Add TypeScript types so the compiler catches this earlier next time."
+    ],
+    "responses": {
+      "marathi": [
+        "Bhau, he number aahe, pan tumhi string var method call karta— kase?",
+        "Type misal ahe— vada pav cha plate idli sathi vaprta.",
+        "Bhau, hi value function nahi, pan tumhi call karta— typo ka?",
+        "Compiler mhante: 'He array nahi, pan tumhi .map vaprta'— bhau?",
+        "Type alag ahe, pan tumhi same disha madhye challa— bhau, check kar.",
+        "Bhau, ek method chya shape madhye dusrya shape chi value takta— misalign.",
+        "String la number sathi vaprta, pan tyacha data type radtoy.",
+        "Bhau, type mismatch ahe— compiler la confusion zala.",
+        "Rice sathi plate, pan tumhi tiffin madhye chapati shodhta— bhau, type check kar.",
+        "He function nahi, value aahe— bhau, parenthesis () kasha s utarle?"
+      ],
+      "hindi": [
+        "Bhai, yeh number hai, par tum string par method call karte ho— kaise?",
+        "Type misal hai— vada pav ki plate idli ke liye use karte ho.",
+        "Bhai, yeh value function nahi, par tum call karte ho— typo kya?",
+        "Compiler kahta: 'Yeh array nahi, par tum .map use karte ho'— bhai?",
+        "Type alag hai, par tum same disha mein chalte ho— bhai, check kar.",
+        "Bhai, ek method ke shape mein dusre shape ki value daalte ho— misalign.",
+        "String ko number ke liye use karte ho, par uska data type rota hai.",
+        "Bhai, type mismatch hai— compiler ko confusion ho gaya.",
+        "Rice ke liye plate, par tiffin mein chapati dhoondhte ho— bhai, type check kar.",
+        "Yeh function nahi, value hai— bhai, parenthesis () kaise utar gaye?"
+      ],
+      "english": [
+        "Bhau, you're calling a method on a value of the wrong type.",
+        "It's a number. You're using it like a string. Type clash.",
+        "Bhau, this is not a function. Stop calling it like one.",
+        "Compiler says: 'Not an array.' You say: `.map()` anyway. Why, bhau?",
+        "Type mismatch — like serving biryani in a tea cup.",
+        "Bhau, the value is shaped like a circle. You're pushing it into a square hole.",
+        "You expected a list. You got a single item. Bhau, check the type.",
+        "TypeError: the classic 'I thought this was X but it was Y' story.",
+        "Bhau, console.log(typeof x) before this line. Save your sanity.",
+        "Types don't match. Either change the value or change the expectation."
+      ]
+    },
+    "confusionScore": 6,
+    "frequencyScore": 10,
+    "fixComplexityScore": 4,
+    "relatedTechnologies": ["TypeScript", "JavaScript", "Python", "React", "Node.js"]
+  },
+  {
+    "id": "syntax_error",
+    "patterns": [
+      "SyntaxError: Unexpected token",
+      "SyntaxError: Unexpected end of input",
+      "SyntaxError: Unexpected identifier",
+      "Parsing error: Unexpected token",
+      "Unexpected token ([\\w]+)",
+      "SyntaxError: Unexpected string",
+      "SyntaxError: missing ([\\w]+) before statement",
+      "SyntaxError: Invalid or unexpected token",
+      "ERROR: ParserError"
+    ],
+    "title": "Syntax Error",
+    "emoji": "BrokenSentence",
+    "category": "Syntax",
+    "beginnerExplanation": "Your code has a grammar mistake — a missing bracket, comma, or a typo the parser can't make sense of. Like writing a Marathi sentence without any verbs.",
+    "likelyFixes": [
+      "Match every `(` with `)`, `{` with `}`, `[` with `]`.",
+      "Check for missing commas in objects, arrays, and function arguments.",
+      "Look at the line BEFORE the reported error — the real mistake is often there.",
+      "Paste your code into a linter (ESLint/Prettier) to auto-format and spot issues.",
+      "Re-read the line slowly — sometimes the typo is one wrong character."
+    ],
+    "responses": {
+      "marathi": [
+        "Bhau, he sentence chukyavar ahe— shabd kram bagh.",
+        "Ek bracket visarla, pan compiler aadhich radtoy.",
+        "Bhau, hi line chukyivar ahe— punctuation bagh.",
+        "Marathi sentence madhye kriyapad nahi, tar kase chalen? Tasach code.",
+        "Bhau, ek comma visarla, pan compiler cha bawa zala.",
+        "Bracket mismatch— khodkun bagh, ekadhik ( ahe ka?",
+        "Bhau, parser la pul aala nahi— toka check kar.",
+        "Hi line chukyivar ahe— compiler la aadhi pul nahi, mag rasta nahi.",
+        "Bhau, syntax mhantat, grammar chuklyavar— bagh, ek cup chai ghe.",
+        "Ek token visarla, pan compiler full screen red karto— bhau, fix kar."
+      ],
+      "hindi": [
+        "Bhai, yeh sentence galat hai— shabd kram dekh.",
+        "Ek bracket bhul gaya, par compiler pehle hi ro raha hai.",
+        "Bhai, yeh line galat hai— punctuation dekh.",
+        "Hindi sentence mein kriya nahi, toh kaise chalega? Waisa hi code.",
+        "Bhai, ek comma bhul gaya, par compiler ka bawa ho gaya.",
+        "Bracket mismatch— dhyan se dekh, ek adhik ( hai kya?",
+        "Bhai, parser ko pul nahi mila— toka check kar.",
+        "Yeh line galat hai— compiler ko pehle pul nahi, phir rasta nahi.",
+        "Bhai, syntax kehte hain, grammar galat— dekh, ek cup chai le.",
+        "Ek token bhul gaya, par compiler full screen red karta hai— bhai, fix kar."
+      ],
+      "english": [
+        "Bhau, your sentence has no verb. The compiler is confused.",
+        "A missing bracket, a missing comma, and the whole line cries.",
+        "Bhau, parser walks in, sees chaos, leaves. Fix the punctuation.",
+        "Grammar mistake — the parser is the strict Marathi teacher here.",
+        "One stray token and the parser files a complaint.",
+        "Bhau, count your brackets. Like counting your change.",
+        "The error points HERE. The bug is one line ABOVE. Always.",
+        "Bhau, English without verbs makes no sense. Same for code without commas.",
+        "Re-read the line. Slowly. Out loud if needed. The typo will jump out.",
+        "Syntax error = the compiler saying 'I don't understand your handwriting.'"
+      ]
+    },
+    "confusionScore": 3,
+    "frequencyScore": 9,
+    "fixComplexityScore": 2,
+    "relatedTechnologies": ["TypeScript", "JavaScript", "Python", "JSON", "Babel"]
+  },
+  {
+    "id": "react_hook_violation",
+    "patterns": [
+      "Rendered fewer hooks than expected",
+      "Rendered more hooks than during the previous render",
+      "React Hook .* is called conditionally",
+      "React Hook .* is called in a function that is neither a React function component nor a custom React Hook",
+      "Minified React error #321",
+      "Invalid hook call",
+      "Cannot read properties of null \\(reading 'useContext'\\)",
+      "React has detected a change in the order of Hooks",
+      "Hooks can only be called inside the body of a component"
+    ],
+    "title": "React Hook Violation",
+    "emoji": "HookTangle",
+    "category": "ReactHooks",
+    "beginnerExplanation": "You broke React's rules of hooks — usually by calling a hook inside an `if`, a loop, or a non-component function. Hooks must run in the same order every render.",
+    "likelyFixes": [
+      "Move the hook ABOVE any `if` / `return` / loop — never inside it.",
+      "Make sure the function name starts with a capital letter and returns JSX.",
+      "Check that you only have ONE copy of React installed (npm ls react).",
+      "Don't call hooks from regular JS functions — only from components or custom hooks.",
+      "For early returns, compute all hooks BEFORE the return statement."
+    ],
+    "responses": {
+      "marathi": [
+        "Bhau, hook la if madhye takla, pan React mhante 'nahi, nahi'.",
+        "Hooks cha kram badlala, React la dhyas aala— bhau, ekdam var tak.",
+        "Bhau, hook function madhye nahi, pan component madhye pahije— navi thev.",
+        "Conditional hook? React la haa savay nahi— bhau, var thev.",
+        "Bhau, hook cha kram change nahi honar— aadhi var, mag if.",
+        "React hook rule toda, tar React radnar— bhau, simple rule.",
+        "Hook loop madhye? Nahi, nahi— bhau, ekdam top la tak.",
+        "Bhau, hook function madhye call kela, pan to component pahije— rename kar.",
+        "Hooks order change zala, tar state change zala— bhau, stable thev.",
+        "Ek hook conditionally, tar React aadhich confused— bhau, var kar."
+      ],
+      "hindi": [
+        "Bhai, hook ko if mein daala, par React kahta 'nahi, nahi'.",
+        "Hooks ka kram badla, React ko confusion hua— bhai, ekdam upar rakh.",
+        "Bhai, hook function mein nahi, par component mein chahiye— nayi jagah.",
+        "Conditional hook? React ko yeh aadat nahi— bhai, upar rakh.",
+        "Bhai, hook ka kram change nahi hoga— pehle upar, phir if.",
+        "React hook rule toda, toh React roega— bhai, simple rule.",
+        "Hook loop mein? Nahi, nahi— bhai, ekdam top par rakh.",
+        "Bhai, hook function mein call kiya, par woh component chahiye— rename kar.",
+        "Hooks order change hua, toh state change hua— bhai, stable rakh.",
+        "Ek hook conditionally, toh React pehle confused— bhai, upar kar."
+      ],
+      "english": [
+        "Bhau, hooks don't bend. Don't put them inside `if` statements.",
+        "React wants hooks in the same order, every single render.",
+        "Bhau, hook inside a loop? React says no. Always no.",
+        "Conditional hook = unpredictable state. Move it up.",
+        "Top of the component. Always. That's the hook's home address.",
+        "Bhau, you called a hook from a regular function. React caught you.",
+        "Hooks are like prayers — same time, same place, every day.",
+        "Bhau, if you `return` early, compute hooks first. Always.",
+        "Rule of hooks: top of component, never inside conditions.",
+        "Bhau, React is strict about hook order. Like a Pune bus schedule."
+      ]
+    },
+    "confusionScore": 9,
+    "frequencyScore": 8,
+    "fixComplexityScore": 7,
+    "relatedTechnologies": ["React", "Next.js", "TypeScript"]
+  },
+  {
+    "id": "infinite_loop",
+    "patterns": [
+      "Maximum update depth exceeded",
+      "Maximum call stack size exceeded",
+      "RangeError: Maximum call stack",
+      "Process timeout",
+      "while\\(true\\)",
+      "Infinite loop",
+      "Ensure that the hook is only called once",
+      "Detected an infinite loop"
+    ],
+    "title": "Infinite Loop",
+    "emoji": "SpinCycle",
+    "category": "BuildFailure",
+    "beginnerExplanation": "Your loop never exits — it keeps running forever. In React, the most common cause is calling setState directly inside the render body.",
+    "likelyFixes": [
+      "Add a clear exit condition to your while/for loop.",
+      "For React: never call setState inside render — move it into useEffect.",
+      "Make sure your loop variable actually changes between iterations.",
+      "Drop a console.log inside the loop — if it spams, you've found it.",
+      "For recursion: ensure your base case is actually reachable."
+    ],
+    "responses": {
+      "marathi": [
+        "Bhau, hi loop chukun saadlyavar ahe— nighat nahi.",
+        "React madhye setState render madhye takla— bhau, infinite loop.",
+        "Bhau, hi loop aadhi start, mag kabhothe nahi— condition bagh.",
+        "While loop cha exit nahi— bhau, ek cup chai ghe, punha vichar.",
+        "Bhau, recursion la base case nahi— to kharcha hot rahil.",
+        "Maximum update depth— React cha rada zala, bhau.",
+        "Loop variable change nahi hot, pan tumhi chalat ahe— bhau?",
+        "Bhau, hi loop kabhothe nighat nahi— rahu de, mi thambnar nahi.",
+        "Console.log takla, tar screen full zala— bhau, infinite loop.",
+        "Bhau, hi loop radnar nahi, pan computer radnar— fix kar."
+      ],
+      "hindi": [
+        "Bhai, yeh loop galti se infinite ho gaya— nikalta nahi.",
+        "React mein setState render mein daala— bhai, infinite loop.",
+        "Bhai, yeh loop pehle start, phir kabhi nahi— condition dekh.",
+        "While loop ka exit nahi— bhai, ek cup chai le, phir vichar.",
+        "Bhai, recursion ko base case nahi— toh kharcha hota rahega.",
+        "Maximum update depth— React ka rada ho gaya, bhai.",
+        "Loop variable change nahi hota, par tum chalte ho— bhai?",
+        "Bhai, yeh loop kabhi nikalta nahi— rehne de, main rukunga nahi.",
+        "Console.log daala, toh screen full ho gaya— bhai, infinite loop.",
+        "Bhai, yeh loop roega nahi, par computer roega— fix kar."
+      ],
+      "english": [
+        "Bhau, your loop forgot to stop. It's been running since morning.",
+        "React state update inside render = infinite loop. Move it to useEffect.",
+        "Bhau, where's the exit door? The loop is asking.",
+        "while(true) with no break is like a train with no brakes.",
+        "Bhau, recursion without a base case is a black hole for memory.",
+        "Maximum update depth — React is begging you to stop.",
+        "If your loop variable doesn't change, the loop doesn't end. Bhau.",
+        "Bhau, console.log inside the loop. If it spams, you found the bug.",
+        "Infinite loop: where CPUs go to overheat.",
+        "Bhau, the loop has no exit strategy. Like a Pune traffic jam."
+      ]
+    },
+    "confusionScore": 7,
+    "frequencyScore": 6,
+    "fixComplexityScore": 5,
+    "relatedTechnologies": ["JavaScript", "TypeScript", "React", "Node.js", "Python"]
+  },
+  {
+    "id": "build_failure",
+    "patterns": [
+      "npm ERR! code ELIFECYCLE",
+      "npm ERR! code ENOENT",
+      "npm ERR! failed",
+      "npm ERR! A complete log",
+      "Build failed with errors",
+      "Failed to compile",
+      "Error occurred prerendering page",
+      "Build worker exited with code",
+      "exited with code 1",
+      "ERROR in .* Module build failed",
+      "Type error:",
+      "ERROR in.*error Command failed with exit code"
+    ],
+    "title": "Build Failure",
+    "emoji": "CraneDown",
+    "category": "BuildFailure",
+    "beginnerExplanation": "Your project failed to build. This is usually a downstream effect of a TypeScript error, missing import, or invalid syntax somewhere in the codebase.",
+    "likelyFixes": [
+      "Read the FULL build log — the first error is usually the real one.",
+      "Run `npm run build` locally to reproduce before deploying.",
+      "Check for TypeScript errors with `npx tsc --noEmit`.",
+      "Make sure every import points to a file that actually exists.",
+      "Delete `node_modules` and `package-lock.json`, then `npm install` fresh."
+    ],
+    "responses": {
+      "marathi": [
+        "Bhau, build fail zala— ekdam pahili error bagh.",
+        "Build radtoy, pan tumhi kuthlya error var bagh ahe?",
+        "Bhau, hi build nahi honar— adhich tsc check kar.",
+        "Build fail zala, pan console madhye javail laksh thev.",
+        "Bhau, npm cha rada zala— package.json var bagh.",
+        "Vercel var build fail zala, pan local var chalto— bhau, version mismatch?",
+        "Bhau, build madhye error ahe, pan aadhich import check kar.",
+        "node_modules delete kar, npm install kar— punha try.",
+        "Bhau, build radnar, pan tu thambu naka— fix kar, punha try.",
+        "Build fail— ek cup chai ghe, full log ekdam varkhun wagh."
+      ],
+      "hindi": [
+        "Bhai, build fail ho gaya— ekdam pehli error dekh.",
+        "Build ro raha, par tum kise error par dekh rahe ho?",
+        "Bhai, yeh build nahi hogi— pehle tsc check kar.",
+        "Build fail ho gaya, par console mein dhyan rakh.",
+        "Bhai, npm ka rada ho gaya— package.json par dekh.",
+        "Vercel par build fail, par local par chalta— bhai, version mismatch?",
+        "Bhai, build mein error hai, par pehle import check kar.",
+        "node_modules delete kar, npm install kar— phir try kar.",
+        "Bhai, build roega, par tu rukna mat— fix kar, phir try kar.",
+        "Build fail— ek cup chai le, full log ekdam dhyan se dekh."
+      ],
+      "english": [
+        "Bhau, build failed. Look at the FIRST error — that's the real bug.",
+        "Build is crying. Open the full log, not just the last line.",
+        "Bhau, run `npx tsc --noEmit` — TypeScript will tell you what's wrong.",
+        "Build failures are symptoms. The disease is somewhere above.",
+        "Bhau, delete node_modules, npm install, try again. The classic.",
+        "Local works, Vercel fails? Check your Node version, bhau.",
+        "Bhau, the build is a strict teacher. It won't compromise.",
+        "Build failed = the compiler found something you missed in the editor.",
+        "Bhau, read the error, don't just stare at it.",
+        "Build failures teach more than successes. Read, fix, repeat."
+      ]
+    },
+    "confusionScore": 8,
+    "frequencyScore": 9,
+    "fixComplexityScore": 6,
+    "relatedTechnologies": ["Next.js", "Vite", "Webpack", "TypeScript", "Vercel", "npm"]
+  },
+  {
+    "id": "import_error",
+    "patterns": [
+      "SyntaxError: Cannot use import statement outside a module",
+      "ImportError: cannot import name",
+      "Uncaught SyntaxError: import",
+      "TS1192: Module .* has no exported member",
+      "does not provide an export named",
+      "SyntaxError: Unexpected token 'import'",
+      "Module parse failed: Cannot use import statement",
+      "ImportDeclaration must be at top level"
+    ],
+    "title": "Import Error",
+    "emoji": "WrongDoor",
+    "category": "MissingModule",
+    "beginnerExplanation": "You're trying to import something that doesn't exist in the source module, or you're using `import` in a non-module context.",
+    "likelyFixes": [
+      "Check whether the named export actually exists: `export const foo` not `export default foo`.",
+      "For default exports, use `import foo from` not `import { foo } from`.",
+      "For CommonJS, use `require()` instead of `import`, or set `\"type\": \"module\"` in package.json.",
+      "Verify the file path and extension are correct.",
+      "If importing a type, use `import type { Foo }` so it gets stripped at build time."
+    ],
+    "responses": {
+      "marathi": [
+        "Bhau, import kela pan export nahi— relation aadhi contract pahije.",
+        "Import error— source madhye hi value nahi, pan tumhi ghet ahe.",
+        "Bhau, named import default import sarkha vaprta— confusion.",
+        "Import madhye nav chukla, pan compiler aadhich radnar.",
+        "Bhau, ek file madhye nahi, dusryat aahe— path check kar.",
+        "CommonJS file madhye import? require vapr, mag chalnar.",
+        "Bhau, default export nahi, pan tumhi default import karta— fix.",
+        "Type import nahi, pan tumhi type sarkha ghet ahe— `import type` vapr.",
+        "Bhau, file extension chukli— .js ki .ts, ekdam bagh.",
+        "Import name chukla, pan compiler full screen red— bhau, ek cup chai."
+      ],
+      "hindi": [
+        "Bhai, import kiya par export nahi— relation se pehle contract chahiye.",
+        "Import error— source mein yeh value nahi, par tum le rahe ho.",
+        "Bhai, named import default import jaisa use karte ho— confusion.",
+        "Import mein naam galat, par compiler pehle roega.",
+        "Bhai, ek file mein nahi, dusre mein hai— path check kar.",
+        "CommonJS file mein import? require use kar, phir chalega.",
+        "Bhai, default export nahi, par tum default import karte ho— fix.",
+        "Type import nahi, par tum type jaisa le rahe ho— `import type` use kar.",
+        "Bhai, file extension galat— .js ya .ts, ekdam dekh.",
+        "Import name galat, par compiler full screen red— bhai, ek cup chai."
+      ],
+      "english": [
+        "Bhau, you imported a name that's not exported. The module doesn't have it.",
+        "Default export vs named import. They don't mix, bhau.",
+        "Bhau, the source file doesn't export what you're asking for.",
+        "Check the spelling. `Button` and `button` are different in JS.",
+        "Bhau, CommonJS file? Use `require`. ESM? Use `import`. They're not friends.",
+        "Type-only import? Use `import type { Foo }`. The compiler likes honesty.",
+        "Bhau, file extension matters. `.js` ≠ `.ts` ≠ `.jsx` ≠ `.tsx`.",
+        "Import paths are case-sensitive on Linux, bhau. Check your caps.",
+        "You imported `Foo`. The file exports `foo`. Bhau, that's a typo.",
+        "Bhau, read the export list. Match the import. It's a contract."
+      ]
+    },
+    "confusionScore": 5,
+    "frequencyScore": 9,
+    "fixComplexityScore": 3,
+    "relatedTechnologies": ["TypeScript", "JavaScript", "Node.js", "Babel", "Webpack"]
+  },
+  {
+    "id": "export_error",
+    "patterns": [
+      "Duplicate declaration",
+      "Export declaration conflicts with",
+      "TS2300: Duplicate identifier",
+      "TS2308: Module .* has already exported a member named",
+      "SyntaxError: Duplicate export",
+      "Only one default export allowed per module",
+      "Identifier .* has already been declared"
+    ],
+    "title": "Export Error",
+    "emoji": "TwoOfSame",
+    "category": "Syntax",
+    "beginnerExplanation": "You're exporting the same name twice, or have two default exports in the same file. Each module can have only one default export.",
+    "likelyFixes": [
+      "Search the file for the duplicate name — there can be only one.",
+      "Use named exports if you need multiple exports: `export const a; export const b;`.",
+      "Remove one of the duplicate `export` keywords.",
+      "For default exports, ensure there's exactly ONE per file.",
+      "Rename one of the conflicting exports."
+    ],
+    "responses": {
+      "marathi": [
+        "Bhau, hi nav donda export kela— ekach nav, ekach aahe.",
+        "Don default export ek file madhye? Bhau, hi impossible aahe.",
+        "Bhau, hi nav duplicate aahe— rename kar, mag chalnar.",
+        "Ek file, ek default export— hi rule aahe, bhau.",
+        "Bhau, export conflict— compiler la bawa zala, fix kar.",
+        "Don var same nav, pan ek export— bhau, rename kar.",
+        "Duplicate declaration— bhau, file var var bagh.",
+        "Bhau, ek nav, ek export— simple rule, bhau.",
+        "Don default export— hi nahi chalnar, ek thev.",
+        "Bhau, export error— file madhye duplicate nav bagh."
+      ],
+      "hindi": [
+        "Bhai, yeh naam dono taraf export kiya— ek hi naam, ek hi hai.",
+        "Do default export ek file mein? Bhai, yeh impossible hai.",
+        "Bhai, yeh naam duplicate hai— rename kar, phir chalega.",
+        "Ek file, ek default export— yeh rule hai, bhai.",
+        "Bhai, export conflict— compiler ka bawa ho gaya, fix kar.",
+        "Do taraf same naam, par ek export— bhai, rename kar.",
+        "Duplicate declaration— bhai, file par file dekh.",
+        "Bhai, ek naam, ek export— simple rule, bhai.",
+        "Do default export— yeh nahi chalega, ek rakh.",
+        "Bhai, export error— file mein duplicate naam dekh."
+      ],
+      "english": [
+        "Bhau, you exported the same name twice. Pick one.",
+        "Two default exports in one file? That's not how modules work, bhau.",
+        "Bhau, rename one of them — duplicate names break the contract.",
+        "One file, one default export. That's the rule.",
+        "Bhau, the compiler is strict about duplicate exports.",
+        "You can't have two things with the same name leaving the same door.",
+        "Bhau, check the whole file. The duplicate is hiding somewhere.",
+        "Duplicate export = two keys for the same lock. Doesn't work.",
+        "Bhau, remove the duplicate. Or rename it. Choose one.",
+        "Export conflict — the compiler is calling you out, bhau."
+      ]
+    },
+    "confusionScore": 4,
+    "frequencyScore": 7,
+    "fixComplexityScore": 2,
+    "relatedTechnologies": ["TypeScript", "JavaScript", "Babel", "Node.js"]
+  },
+  {
+    "id": "missing_dependency",
+    "patterns": [
+      "npm ERR! code ERESOLVE",
+      "unable to resolve dependency tree",
+      "peer dependency",
+      "ERR! ERESOLVE could not resolve",
+      "Cannot find dependency",
+      "Unmet peer dependency",
+      "npm ERR! ERESOLVE.*peer"
+    ],
+    "title": "Missing Dependency",
+    "emoji": "BrokenChain",
+    "category": "MissingModule",
+    "beginnerExplanation": "npm can't figure out which versions of packages to install because two packages want incompatible versions of the same dependency.",
+    "likelyFixes": [
+      "Read the conflict — npm usually names the two packages fighting.",
+      "Try installing with `--legacy-peer-deps` as a temporary workaround.",
+      "Update one of the conflicting packages to a compatible version.",
+      "Delete `node_modules` and `package-lock.json`, then reinstall fresh.",
+      "Check the `peerDependencies` of your top-level packages."
+    ],
+    "responses": {
+      "marathi": [
+        "Bhau, don package ekach dependency sathi ladhtaat— fix kar.",
+        "npm cha ERESOLVE— version conflict aahe, bhau.",
+        "Bhau, peer dependency problem— package version bagh.",
+        "Don package ek version sathi ladhle— bhau, ek update kar.",
+        "npm install radtoy— bhau, package.json var bagh.",
+        "Bhau, --legacy-peer-deps try kar, pan permanently fix kar.",
+        "node_modules delete kar, punha install kar— fresh start.",
+        "Bhau, peer dependency conflict— version match kar.",
+        "npm la conflict ahe— bhau, donhi package check kar.",
+        "Bhau, dependency tree radtoy— ek package update kar."
+      ],
+      "hindi": [
+        "Bhai, do package ekhi dependency ke liye ladte hain— fix kar.",
+        "npm ka ERESOLVE— version conflict hai, bhai.",
+        "Bhai, peer dependency problem— package version dekh.",
+        "Do package ek version ke liye ladte— bhai, ek update kar.",
+        "npm install rota hai— bhai, package.json par dekh.",
+        "Bhai, --legacy-peer-deps try kar, par permanently fix kar.",
+        "node_modules delete kar, phir install kar— fresh start.",
+        "Bhai, peer dependency conflict— version match kar.",
+        "npm ko conflict hai— bhai, dono package check kar.",
+        "Bhai, dependency tree ro raha hai— ek package update kar."
+      ],
+      "english": [
+        "Bhau, two packages want different versions of the same thing.",
+        "npm ERESOLVE — the package manager is having a family feud.",
+        "Bhau, peer dependency conflict. Read which two packages are fighting.",
+        "Try `--legacy-peer-deps` as a bandage, but fix the root cause.",
+        "Bhau, update one of the conflicting packages to a friendlier version.",
+        "Sometimes nuking `node_modules` and starting fresh is the only way.",
+        "Bhau, check `peerDependencies` in package.json — that's where it lives.",
+        "Dependency conflicts are like roommate fights. Someone has to compromise.",
+        "Bhau, npm is strict for a reason. Don't bypass it forever.",
+        "Read the conflict, identify the two fighters, pick a winner."
+      ]
+    },
+    "confusionScore": 9,
+    "frequencyScore": 10,
+    "fixComplexityScore": 6,
+    "relatedTechnologies": ["npm", "yarn", "pnpm", "Node.js", "React"]
+  },
+  {
+    "id": "api_fetch_failure",
+    "patterns": [
+      "Failed to fetch",
+      "NetworkError when attempting to fetch resource",
+      "TypeError: Failed to fetch",
+      "fetch.*failed",
+      "Request failed with status code (4|5)\\d\\d",
+      "Cross-Origin Request Blocked",
+      "blocked by CORS policy",
+      "Network request failed"
+    ],
+    "title": "API Fetch Failure",
+    "emoji": "CallDrop",
+    "category": "BuildFailure",
+    "beginnerExplanation": "Your code tried to fetch data from an API but couldn't — either the URL is wrong, the server is down, or CORS is blocking the request from the browser.",
+    "likelyFixes": [
+      "Open the URL directly in your browser — does it return anything?",
+      "Check for typos in the URL and the protocol (http vs https).",
+      "If CORS error, the BACKEND needs to send `Access-Control-Allow-Origin` header.",
+      "Verify the server is running (for local APIs: is your backend on port 3000?).",
+      "Try adding or removing a trailing `/` from the URL."
+    ],
+    "responses": {
+      "marathi": [
+        "Bhau, fetch fail zala— URL bagh, server bagh.",
+        "API la pillu nahi— URL chukli ka, server down ka?",
+        "Bhau, CORS error aahe— backend la header thevaycha ahe, frontend nahi.",
+        "Fetch radtoy— URL madhye protocol check kar (http/https).",
+        "Bhau, server alive aahe ka? Console madhye bagh.",
+        "Localhost fetch nahi hot— backend port check kar, bhau.",
+        "Bhau, fetch fail— ek cup chai ghe, URL punha check kar.",
+        "Status 404— server la hi endpoint mahiti nahi, bhau.",
+        "Bhau, fetch error— network tab var bagh, request pahata.",
+        "Fetch radnar, pan URL, port, CORS— donhi check kar."
+      ],
+      "hindi": [
+        "Bhai, fetch fail ho gaya— URL dekh, server dekh.",
+        "API ko pillu nahi— URL galat kya, server down kya?",
+        "Bhai, CORS error hai— backend ko header dena hai, frontend ko nahi.",
+        "Fetch ro raha hai— URL mein protocol check kar (http/https).",
+        "Bhai, server alive hai kya? Console mein dekh.",
+        "Localhost fetch nahi hota— backend port check kar, bhai.",
+        "Bhai, fetch fail— ek cup chai le, URL phir check kar.",
+        "Status 404— server ko yeh endpoint nahi pata, bhai.",
+        "Bhai, fetch error— network tab par dekh, request dekho.",
+        "Fetch roega, par URL, port, CORS— dono check kar."
+      ],
+      "english": [
+        "Bhau, the fetch failed. Check the URL, then the server.",
+        "APIs don't answer to typos. Check your URL, bhau.",
+        "Bhau, CORS error means the BACKEND needs a header, not your frontend.",
+        "Fetch failed — is the server even running? Check the console.",
+        "Bhau, http vs https. One letter, big difference.",
+        "Localhost not responding? Your backend is probably on a different port.",
+        "Bhau, 404 means the server doesn't know that URL. Check the route.",
+        "Network tab → see the request → see the response. The truth is there.",
+        "Bhau, fetch errors are like missed calls. Was the phone even on?",
+        "Fetch failed: URL, port, CORS, auth. Check all four, bhau."
+      ]
+    },
+    "confusionScore": 6,
+    "frequencyScore": 9,
+    "fixComplexityScore": 4,
+    "relatedTechnologies": ["JavaScript", "fetch", "axios", "React", "Node.js", "CORS"]
+  },
+  {
+    "id": "json_parse_error",
+    "patterns": [
+      "JSON\\.parse: unexpected character",
+      "Unexpected token .* in JSON at position",
+      "SyntaxError: Unexpected token < in JSON",
+      "Invalid JSON",
+      "Unexpected end of JSON input",
+      "JSON\\.parse:.*not well-formed",
+      "JSON5: invalid end of input",
+      "Expected property name or",
+      "JSON Parse error"
+    ],
+    "title": "JSON Parse Error",
+    "emoji": "BrokenBrace",
+    "category": "Syntax",
+    "beginnerExplanation": "You're trying to parse a string as JSON, but it's not valid JSON — usually a missing quote, a trailing comma, or HTML being returned instead of JSON.",
+    "likelyFixes": [
+      "console.log the raw string before parsing — see what's actually there.",
+      "Remove trailing commas (JSON does not allow them).",
+      "Use double quotes for all keys and string values, not single quotes.",
+      "If your API returned HTML (like a 404 page), don't parse it as JSON.",
+      "Paste the JSON into jsonlint.com to spot the exact error position."
+    ],
+    "responses": {
+      "marathi": [
+        "Bhau, hi JSON nahi— ek quote visarla ka?",
+        "JSON parse error— trailing comma nahi chalat, bhau.",
+        "Bhau, single quote nahi, double quote pahije JSON madhye.",
+        "API ne HTML pathvla, pan tumhi JSON parse karta— bhau?",
+        "Bhau, ek comma extra— pan parser full red karto.",
+        "JSON parse error— console.log kar, raw string bagh.",
+        "Bhau, hi JSON invalid aahe— ek validator vapar.",
+        "Unexpected token— ek quote, comma, bracket bagh.",
+        "Bhau, JSON la strict grammar— single quote nahi.",
+        "JSON parse radtoy— file madhye bagh, raw text."
+      ],
+      "hindi": [
+        "Bhai, yeh JSON nahi— ek quote bhul gaya kya?",
+        "JSON parse error— trailing comma nahi chalega, bhai.",
+        "Bhai, single quote nahi, double quote chahiye JSON mein.",
+        "API ne HTML bheja, par tum JSON parse karte ho— bhai?",
+        "Bhai, ek comma extra— par parser full red karta hai.",
+        "JSON parse error— console.log kar, raw string dekh.",
+        "Bhai, yeh JSON invalid hai— ek validator use kar.",
+        "Unexpected token— ek quote, comma, bracket dekh.",
+        "Bhai, JSON ko strict grammar— single quote nahi.",
+        "JSON parse ro raha hai— file mein dekh, raw text."
+      ],
+      "english": [
+        "Bhau, that's not JSON. There's a quote missing somewhere.",
+        "JSON doesn't allow trailing commas. Remove the last one, bhau.",
+        "Bhau, JSON uses double quotes only. Single quotes are for JS objects.",
+        "API returned HTML, you tried to JSON.parse it. Bhau, check status first.",
+        "Bhau, one extra comma breaks the whole parser. Be ruthless.",
+        "console.log the raw string before parsing. See what's actually there.",
+        "Bhau, use a JSON validator. It'll point to the exact character.",
+        "Unexpected token usually = a missing comma, quote, or bracket.",
+        "Bhau, JSON is strict. JavaScript objects are flexible. They're different.",
+        "JSON parse error: the data isn't shaped the way you think it is."
+      ]
+    },
+    "confusionScore": 4,
+    "frequencyScore": 8,
+    "fixComplexityScore": 2,
+    "relatedTechnologies": ["JSON", "JavaScript", "TypeScript", "fetch", "Node.js"]
+  },
+  {
+    "id": "array_out_of_bounds",
+    "patterns": [
+      "IndexError: list index out of range",
+      "ArrayIndexOutOfBoundsException",
+      "Cannot read propert(?:y|ies) of undefined \\(reading '([\\w]+)'\\)",
+      "RangeError: Invalid array length",
+      "undefined is not an object \\(evaluating",
+      "Index out of bounds",
+      "TypeError: Cannot read properties of undefined \\(reading '([\\w]+)'\\)",
+      "List index out of range"
+    ],
+    "title": "Array Out Of Bounds",
+    "emoji": "OffEdge",
+    "category": "TypeError",
+    "beginnerExplanation": "You tried to access an array element at an index that doesn't exist — usually because the array is shorter than you think, or you used `array.length` instead of `array.length - 1`.",
+    "likelyFixes": [
+      "console.log the array's `.length` right before the failing line.",
+      "Use `array[array.length - 1]` for the last item, not `array[array.length]`.",
+      "Add a bounds check: `if (i < arr.length) { ... }`.",
+      "Use `.at(-1)` (modern JS) or `array[array.length - 1]` for the last item.",
+      "For `map`/`filter` chains: log intermediate arrays — one might be empty."
+    ],
+    "responses": {
+      "marathi": [
+        "Bhau, hi index array chya baher ahe— length check kar.",
+        "List aiti item ghetla, pan listat charuch nahi— IndexError.",
+        "Bhau, array.length ahe, pan array.length-1 pahije— last item.",
+        "Index out of bounds— ek cup chai ghe, length console.log kar.",
+        "Bhau, hi array rikami aahe, pan tumhi item shodhta— kase?",
+        "Loop cha index 0 pasun chalu, length paryant— rule bagh.",
+        "Bhau, hi index negative ahe? Array madhye negative index nahi.",
+        "Array cha last item pahije? .at(-1) vapr, bhau.",
+        "Bhau, hi value undefined aahe, kyunki index chukla.",
+        "Array out of bounds— compiler la confusion nahi, tuze code la ahe."
+      ],
+      "hindi": [
+        "Bhai, yeh index array ke bahar hai— length check kar.",
+        "List mein aathva item liya, par list mein chaar hi nahi— IndexError.",
+        "Bhai, array.length hai, par array.length-1 chahiye— last item.",
+        "Index out of bounds— ek cup chai le, length console.log kar.",
+        "Bhai, yeh array khali hai, par tum item dhoondhte ho— kaise?",
+        "Loop ka index 0 se shuru, length tak— rule dekh.",
+        "Bhai, yeh index negative hai? Array mein negative index nahi.",
+        "Array ka last item chahiye? .at(-1) use kar, bhai.",
+        "Bhai, yeh value undefined hai, kyunki index galat hai.",
+        "Array out of bounds— compiler ko confusion nahi, tumhare code ko hai."
+      ],
+      "english": [
+        "Bhau, that index walked off the edge of the array.",
+        "You asked for item 8 in a 4-item array. Arrays don't stretch.",
+        "Bhau, the last index is `length - 1`. Not `length`. Never `length`.",
+        "console.log(arr.length) before the failing line. See the truth.",
+        "Bhau, empty array + index access = guaranteed undefined.",
+        "Loops start at 0, end at length - 1. That's the rule, bhau.",
+        "Negative index? Use `.at(-1)`. Don't subtract from length.",
+        "Bhau, if `arr[i]` is undefined, `i` is wrong. Check it.",
+        "Array bounds: where optimism meets reality.",
+        "Bhau, your index is bigger than your array. Math doesn't lie."
+      ]
+    },
+    "confusionScore": 4,
+    "frequencyScore": 9,
+    "fixComplexityScore": 3,
+    "relatedTechnologies": ["JavaScript", "TypeScript", "Python", "Java", "C#"]
+  },
+  {
+    "id": "promise_rejection",
+    "patterns": [
+      "UnhandledPromiseRejectionWarning",
+      "Unhandled \\(in promise\\)",
+      "TypeError: Cannot read propert(?:y|ies) of undefined \\(reading 'then'\\)",
+      "is not a promise",
+      "Promise rejection",
+      "Async function.*reject",
+      "TypeError: .* is not async",
+      "Error:.*promise"
+    ],
+    "title": "Promise Rejection",
+    "emoji": "BrokenHandshake",
+    "category": "TypeError",
+    "beginnerExplanation": "A Promise rejected but you didn't catch it, or you called `.then()` on something that isn't a Promise. Async code needs `await` + `try/catch` or `.then().catch()`.",
+    "likelyFixes": [
+      "Wrap your `await` calls in `try/catch` blocks.",
+      "Always add `.catch()` to `.then()` chains.",
+      "Check that the function you're awaiting actually returns a Promise.",
+      "Add `async` to the function that uses `await`.",
+      "Listen for `process.on('unhandledRejection', ...)` to catch strays in Node."
+    ],
+    "responses": {
+      "marathi": [
+        "Bhau, hi promise reject zali, pan tumhi catch nahi kela.",
+        "Await vaprta, pan function async nahi— bhau, fix kar.",
+        "Bhau, .then() var .catch() nahi— radnar, thev na.",
+        "Promise reject zala, pan koni handle nahi kela— bhau?",
+        "Async function la await nahi— control flow radtoy.",
+        "Bhau, try/catch vapr, mag promise reject pan chamtkar nahi.",
+        "Unhandled promise— Node console red karto, fix kar.",
+        "Bhau, hi value promise nahi, pan tumhi .then() karta— kase?",
+        "Promise chain adhich todi, pan error nahi pakaDla— bhau.",
+        "Async/await cha rule bagh— try/catch garaj, bhau."
+      ],
+      "hindi": [
+        "Bhai, yeh promise reject hua, par tum catch nahi kiya.",
+        "Await use karte, par function async nahi— bhai, fix kar.",
+        "Bhai, .then() par .catch() nahi— roega, rakh na.",
+        "Promise reject hua, par kisi ne handle nahi kiya— bhai?",
+        "Async function ko await nahi— control flow ro raha hai.",
+        "Bhai, try/catch use kar, phir promise reject bhi chamatkar nahi.",
+        "Unhandled promise— Node console red karta hai, fix kar.",
+        "Bhai, yeh value promise nahi, par tum .then() karte ho— kaise?",
+        "Promise chain pehle todi, par error nahi pakda— bhai.",
+        "Async/await ka rule dekh— try/catch garaz, bhai."
+      ],
+      "english": [
+        "Bhau, your promise rejected. Where's the catch?",
+        "Using `await` in a non-async function? Bhau, add `async`.",
+        "Every `.then()` deserves a `.catch()`. They're a couple, bhau.",
+        "Promise rejected silently. Now Node is screaming.",
+        "Bhau, async code without error handling is a ticking bomb.",
+        "Wrap awaits in try/catch. Your future self will thank you.",
+        "Bhau, unhandled rejections can crash Node 15+. Catch them.",
+        "Calling `.then()` on a non-Promise? It returns undefined. Bhau.",
+        "Bhau, promises are commitments. If they fail, you need a backup plan.",
+        "async/await + try/catch = the only correct pattern. Bhau, learn it."
+      ]
+    },
+    "confusionScore": 7,
+    "frequencyScore": 8,
+    "fixComplexityScore": 5,
+    "relatedTechnologies": ["JavaScript", "TypeScript", "Node.js", "React", "async/await"]
+  },
+  {
+    "id": "git_merge_conflict",
+    "patterns": [
+      "CONFLICT \\(content\\): Merge conflict",
+      "Automatic merge failed",
+      "error: failed to push some refs",
+      "Updates were rejected because the remote contains work",
+      "non-fast-forward",
+      "merge conflict in",
+      "Both modified",
+      "Merge conflict"
+    ],
+    "title": "Git Merge Conflict",
+    "emoji": "TwoChefs",
+    "category": "BuildFailure",
+    "beginnerExplanation": "Two branches changed the same lines of code, and Git doesn't know which version to keep. You have to manually choose — `<<<<<<<`, `=======`, `>>>>>>>` mark the conflicting sections.",
+    "likelyFixes": [
+      "Open each conflicted file and look for `<<<<<<< HEAD` markers.",
+      "Pick one version (or merge both), then DELETE the marker lines.",
+      "Stage the resolved file: `git add <file>`.",
+      "Commit the merge: `git commit` (Git pre-fills the message).",
+      "Use `git merge --abort` to bail out and start over if it's too messy."
+    ],
+    "responses": {
+      "marathi": [
+        "Bhau, don branches ekach line var takle— conflict zala.",
+        "Git la confusion zala— tumhi decide Kara ki konta version sahi.",
+        "Bhau, <<<<<<< HEAD markers bagh, ekach fix kar.",
+        "Merge conflict— ek cup chai ghe, file var file bagh.",
+        "Bhau, ek version choose kar, markers delete kar, commit kar.",
+        "Conflict zala, pan git merge --abort kar— fresh start.",
+        "Bhau, don devs ne ekach line edit keli— conflict inevitable.",
+        "Conflict markers: <<<<<<< ======= >>>>>>> — bagh, fix kar.",
+        "Bhau, merge conflict— panic nako, ek file var laksh thev.",
+        "Resolve conflict— stage, commit, push. Simple 3 steps, bhau."
+      ],
+      "hindi": [
+        "Bhai, do branches ne ek hi line par edit kiya— conflict hua.",
+        "Git ko confusion hua— tum decide karo kaunsa version sahi.",
+        "Bhai, <<<<<<< HEAD markers dekh, ek fix kar.",
+        "Merge conflict— ek cup chai le, file par file dekh.",
+        "Bhai, ek version choose kar, markers delete kar, commit kar.",
+        "Conflict hua, par git merge --abort kar— fresh start.",
+        "Bhai, do devs ne ek hi line edit ki— conflict inevitable.",
+        "Conflict markers: <<<<<<< ======= >>>>>>> — dekh, fix kar.",
+        "Bhai, merge conflict— panic mat, ek file par dhyan rakh.",
+        "Resolve conflict— stage, commit, push. Simple 3 steps, bhai."
+      ],
+      "english": [
+        "Bhau, two branches fought over the same line. Pick a winner.",
+        "Git is confused. You have to choose: this version, that version, or both.",
+        "Bhau, look for `<<<<<<< HEAD` markers — those are the battlefields.",
+        "Merge conflict: panic optional. Chai mandatory. Then resolve file by file.",
+        "Pick one version, delete the markers, `git add`, `git commit`. Done.",
+        "Bhau, `git merge --abort` is your escape hatch. Use it if needed.",
+        "Two devs, same line, same time. Conflict was destiny.",
+        "Markers: `<<<<<<< ======= >>>>>>>`. They mark what to merge.",
+        "Bhau, resolve one file at a time. Don't panic-browse them all.",
+        "Stage → commit → push. The 3-step merge-conflict recovery."
+      ]
+    },
+    "confusionScore": 9,
+    "frequencyScore": 10,
+    "fixComplexityScore": 6,
+    "relatedTechnologies": ["Git", "GitHub", "GitLab", "Bitbucket"]
+  },
+  {
+    "id": "port_in_use",
+    "patterns": [
+      "EADDRINUSE",
+      "listen EADDRINUSE: address already in use",
+      "Errno 98",
+      "Address already in use",
+      "port .* is already in use",
+      "Error: listen EADDRINUSE",
+      "Port .* is being used by another process"
+    ],
+    "title": "Port Already In Use",
+    "emoji": "OccupiedSeat",
+    "category": "BuildFailure",
+    "beginnerExplanation": "Another process is already listening on the same port your app wants to use. Often it's a previous instance of your own server that didn't shut down.",
+    "likelyFixes": [
+      "Find what's using the port: `lsof -i :3000` (mac/Linux) or `netstat -ano | findstr :3000` (Windows).",
+      "Kill the process: `kill -9 <PID>` (mac/Linux) or `taskkill /F /PID <PID>` (Windows).",
+      "Change your app's PORT env variable to a different number (e.g. 3001).",
+      "Make sure you didn't already start the server in another terminal.",
+      "On macOS: `sudo lsof -i :<port>` if you don't see the process."
+    ],
+    "responses": {
+      "marathi": [
+        "Bhau, hi port aadhiIt occupied aahe— dusra process ahe.",
+        "EADDRINUSE— ek process aadhi chalu, pan tumhi navin start karta.",
+        "Bhau, lsof -i :3000 kar— kon ahe tithe bagh.",
+        "Port already in use— process kill kar, mag punha start.",
+        "Bhau, dusra terminal madhye server chalu aahe— band kar.",
+        "EADDRINUSE— ek cup chai ghe, process list bagh.",
+        "Bhau, hi port aadhi occupied— dusri port try kar.",
+        "Process kill kar: kill -9 <PID>— simple fix, bhau.",
+        "Bhau, port conflict— don servers ekach port var nahi chalat.",
+        "EADDRINUSE— env PORT change kar, mag chalnar."
+      ],
+      "hindi": [
+        "Bhai, yeh port pehle occupied hai— dusra process hai.",
+        "EADDRINUSE— ek process pehle chalu, par tum naya start karte ho.",
+        "Bhai, lsof -i :3000 kar— kaun hai wahan dekh.",
+        "Port already in use— process kill kar, phir start kar.",
+        "Bhai, dusre terminal mein server chalu hai— band kar.",
+        "EADDRINUSE— ek cup chai le, process list dekh.",
+        "Bhai, yeh port pehle occupied— dusri port try kar.",
+        "Process kill kar: kill -9 <PID>— simple fix, bhai.",
+        "Bhai, port conflict— do servers ek hi port par nahi chalenge.",
+        "EADDRINUSE— env PORT change kar, phir chalega."
+      ],
+      "english": [
+        "Bhau, that port is taken. Someone's sitting in your chair.",
+        "EADDRINUSE — there's already a server on that port. Find it.",
+        "Run `lsof -i :3000` (or your port). See who's squatting.",
+        "Bhau, `kill -9 <PID>` is your eviction notice.",
+        "Another terminal is probably still running your server. Close it.",
+        "Bhau, change the PORT env var to 3001. Move chairs.",
+        "Port conflicts are like reserved seats. You need a new one.",
+        "Bhau, two servers can't share a port. Basic math.",
+        "Windows? `netstat -ano | findstr :PORT` then `taskkill /F /PID`.",
+        "EADDRINUSE: classic 'forgot to close the previous server' bug."
+      ]
+    },
+    "confusionScore": 6,
+    "frequencyScore": 8,
+    "fixComplexityScore": 4,
+    "relatedTechnologies": ["Node.js", "Express", "Next.js", "Vite", "Linux", "macOS"]
+  },
+  {
+    "id": "env_var_missing",
+    "patterns": [
+      "Missing required environment variable",
+      "environment variable .* is not set",
+      "process\\.env\\.[A-Z_][A-Z0-9_]* is undefined",
+      "Error: .* environment variable",
+      "Error: .* is required",
+      "Please set .* in your \\.env"
+    ],
+    "title": "Environment Variable Missing",
+    "emoji": "EmptyKey",
+    "category": "BuildFailure",
+    "beginnerExplanation": "Your code is reading `process.env.SOMETHING` but the variable isn't set in your `.env` file or your environment. Often you forgot to create `.env` or restart the dev server after editing it.",
+    "likelyFixes": [
+      "Create a `.env` file in the project root with the missing variable.",
+      "Restart your dev server — `.env` changes are not picked up automatically.",
+      "Check for typos: `API_KEY` ≠ `APIKEY` ≠ `api_key`.",
+      "In Vite/Next.js, prefix client-side env vars with `VITE_` or `NEXT_PUBLIC_`.",
+      "Never commit `.env` — but DO commit `.env.example` with the key names."
+    ],
+    "responses": {
+      "marathi": [
+        "Bhau, process.env.SOMETHING undefined aahe— .env file bagh.",
+        "Env variable missing— .env file create kar, value thev.",
+        "Bhau, dev server restart kar— .env change nahi yet automatically.",
+        "Typo? API_KEY, APIKEY, api_key— ekdam bagh.",
+        "Bhau, Vite la VITE_ prefix pahije— rule aahe.",
+        "Env variable missing— ek cup chai ghe, .env file bagh.",
+        "Bhau, .env file git la commit nahi— pan .env.example commit kar.",
+        "process.env.X undefined— .env file var bagh, bhau.",
+        "Bhau, env variable chukla— case sensitive, dhyan thev.",
+        "Env missing— server restart kar, mag check kar."
+      ],
+      "hindi": [
+        "Bhai, process.env.SOMETHING undefined hai— .env file dekh.",
+        "Env variable missing— .env file create kar, value rakh.",
+        "Bhai, dev server restart kar— .env change nahi hota automatically.",
+        "Typo? API_KEY, APIKEY, api_key— ekdam dekh.",
+        "Bhai, Vite ko VITE_ prefix chahiye— rule hai.",
+        "Env variable missing— ek cup chai le, .env file dekh.",
+        "Bhai, .env file git ko commit nahi— par .env.example commit kar.",
+        "process.env.X undefined— .env file par dekh, bhai.",
+        "Bhai, env variable galat— case sensitive, dhyan rakh.",
+        "Env missing— server restart kar, phir check kar."
+      ],
+      "english": [
+        "Bhau, process.env.X is undefined. Check your .env file.",
+        "Env var missing — create `.env` and put the value in it.",
+        "Bhau, restart your dev server after editing `.env`. Always.",
+        "Case matters: `API_KEY` ≠ `api_key`. Bhau, check spelling.",
+        "Vite needs `VITE_` prefix. Next.js needs `NEXT_PUBLIC_`. Bhau, prefixes.",
+        "Bhau, `.env` is git-ignored. But `.env.example` should be committed.",
+        "process.env.X is undefined. Either X isn't set, or it's misspelled.",
+        "Bhau, dotenv in Node? Make sure you call `dotenv.config()` first.",
+        "Env var missing: classic 'works on my machine' bug source.",
+        "Bhau, check `.env.local` too — some frameworks override `.env` with it."
+      ]
+    },
+    "confusionScore": 7,
+    "frequencyScore": 8,
+    "fixComplexityScore": 3,
+    "relatedTechnologies": ["Node.js", "Next.js", "Vite", "dotenv", "React"]
+  },
+  {
+    "id": "db_connection_failure",
+    "patterns": [
+      "ECONNREFUSED.*([0-9]+)",
+      "Connection refused",
+      "connect ECONNREFUSED",
+      "database connection failed",
+      "Cannot connect to.*database",
+      "password authentication failed",
+      "Connection terminated",
+      "MongoServerSelectionError",
+      "OperationalError: connect ECONNREFUSED"
+    ],
+    "title": "Database Connection Failure",
+    "emoji": "LockedGate",
+    "category": "BuildFailure",
+    "beginnerExplanation": "Your app couldn't connect to the database — either the DB isn't running, the URL is wrong, or the credentials are incorrect.",
+    "likelyFixes": [
+      "Is your database server actually running? Check `docker ps` or services.",
+      "Verify the connection string: host, port, db name, username, password.",
+      "Check firewalls — is the DB port (5432, 27017, 3306) open from your machine?",
+      "For local dev: make sure Postgres/Mongo/MySQL is installed and started.",
+      "Test the connection from the terminal first: `psql`, `mongo`, `mysql`."
+    ],
+    "responses": {
+      "marathi": [
+        "Bhau, database connect nahi zala— server chalu aahe ka?",
+        "ECONNREFUSED— DB port var koni nahi— server start kar.",
+        "Bhau, connection string check kar— host, port, password.",
+        "DB connection fail— credentials check kar, bhau.",
+        "Bhau, Postgres/Mongo chalu aahe ka? docker ps kar, bagh.",
+        "DB connection radtoy— firewall port block ka?",
+        "Bhau, password authentication fail— .env madhye DB password check.",
+        "Connection terminated— DB server gela, punha start kar.",
+        "Bhau, local DB install aahe ka? Psql/mongo/mysql terminal var try.",
+        "DB connection fail— ek cup chai ghe, server status bagh."
+      ],
+      "hindi": [
+        "Bhai, database connect nahi hua— server chalu hai kya?",
+        "ECONNREFUSED— DB port par koi nahi— server start kar.",
+        "Bhai, connection string check kar— host, port, password.",
+        "DB connection fail— credentials check kar, bhai.",
+        "Bhai, Postgres/Mongo chalu hai kya? docker ps kar, dekh.",
+        "DB connection ro raha hai— firewall port block kya?",
+        "Bhai, password authentication fail— .env mein DB password check.",
+        "Connection terminated— DB server gaya, phir start kar.",
+        "Bhai, local DB install hai kya? Psql/mongo/mysql terminal par try.",
+        "DB connection fail— ek cup chai le, server status dekh."
+      ],
+      "english": [
+        "Bhau, the database didn't pick up. Is the server even running?",
+        "ECONNREFUSED on the DB port — nothing's listening there.",
+        "Bhau, check the connection string. Host, port, db, user, password.",
+        "DB connection failed — credentials are the usual suspect.",
+        "Bhau, `docker ps` or `brew services list`. Is the DB container up?",
+        "Firewall blocking the DB port? Bhau, check security groups.",
+        "Password auth failed. `.env` DB password — check it letter by letter.",
+        "Bhau, connection terminated = DB server crashed. Restart it.",
+        "Test from terminal first: `psql`, `mongo`, `mysql`. If that fails, code won't help.",
+        "DB connection fail: server status → credentials → network. Check all three."
+      ]
+    },
+    "confusionScore": 7,
+    "frequencyScore": 7,
+    "fixComplexityScore": 5,
+    "relatedTechnologies": ["PostgreSQL", "MongoDB", "MySQL", "Node.js", "Prisma", "Docker"]
+  }
+]
