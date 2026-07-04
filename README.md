@@ -1,4 +1,4 @@
-# Code Bhau <img src="media/icon.png" alt="Code Bhau logo" width="64" height="64" align="right" />
+# Code Bhau <img src="media/logo.png" alt="Code Bhau logo" width="64" height="64" align="right" />
 
 > **Bhau, party la bolavla pan guest aalach nahi.**
 > A supportive senior dev bhau who explains your errors in Marathi, Hindi & English — 100% offline, no APIs, no AI code generation.
