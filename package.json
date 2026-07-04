@@ -3,11 +3,11 @@
   "displayName": "Code Bhau",
   "description": "Your supportive senior dev bhau — explains errors in Marathi, Hindi & English with beginner-friendly fixes. 100% offline.",
   "version": "2.0.0",
-  "publisher": "codebhau",
+  "publisher": "yash magar and aryan pohakar",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/codebhau/code-bhau.git"
+    "url": "https://github.com/yashmagar01/code_bhau.git"
   },
   "engines": {
     "vscode": "^1.74.0"
