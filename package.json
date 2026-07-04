@@ -28,7 +28,7 @@
     "mentor",
     "offline"
   ],
-  "icon": "media/icon.png",
+  "icon": "media/logo.png",
   "galleryBanner": {
     "color": "#1E1E2E",
     "theme": "dark"
@@ -53,7 +53,7 @@
         {
           "id": "codeBhau-view-container",
           "title": "Code Bhau",
-          "icon": "media/sidebar-icon.svg"
+          "icon": "media/logo.png"
         }
       ]
     },
@@ -63,7 +63,7 @@
           "type": "webview",
           "id": "codeBhau.sidebar",
           "name": "Bhau Says",
-          "icon": "media/sidebar-icon.svg",
+          "icon": "media/logo.png",
           "contextualTitle": "Code Bhau"
         }
       ]
