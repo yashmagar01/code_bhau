@@ -7,6 +7,8 @@ src/**
 vsc-extension-quickstart.md
 **/tsconfig.json
 **/.eslintrc.json
+**/.eslintrc.js
+**/.eslintrc.shared.json
 **/*.map
 **/*.ts
 **/.env
@@ -21,6 +23,8 @@ esbuild.js
 importMetaUrl.js
 scripts
 e2e
+e2e.log
+*.log
 
 server/exe/**
 !out/node_modules/**
@@ -30,6 +34,13 @@ server/exe/**
 out/node_modules/esbuild/**
 out/node_modules/@esbuild/**
 
+# Exclude zip and vsix artifacts
 code-bhau-agent.zip
 *.vsix
+
+# Exclude EVERYTHING from parent monorepo directories
+# (esbuild bundles all core/ dependencies into out/ already)
+../../**
+
+
 
