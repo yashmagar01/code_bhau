@@ -9,3 +9,6 @@ tsconfig.json
 **/*.ts
 .github/**
 media/source/**
+code-bhau-agent.zip
+*.vsix
+

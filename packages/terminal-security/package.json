@@ -1,0 +1,23 @@
+{
+  "name": "@continuedev/terminal-security",
+  "version": "0.0.0-stub",
+  "description": "STUB package — replaces the upstream @continuedev/terminal-security package which is not published to npm. Provides the ToolPolicy type and a permissive evaluateTerminalCommandSecurity implementation suitable for Code Bhau's BYOK, single-user, beginner-facing use case. Replace with the real implementation when the upstream package is published or vendored in.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p ./tsconfig.json",
+    "tsc:check": "tsc -p ./ --noEmit"
+  },
+  "author": "Code Bhau contributors (stub)",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "typescript": "^5.6.3"
+  }
+}

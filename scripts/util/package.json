@@ -1,0 +1,7 @@
+{
+  "name": "@code-bhau/scripts-util",
+  "private": true,
+  "version": "0.0.0-stub",
+  "description": "Root-level build helpers (stub). CommonJS-scoped so .js files here are treated as CJS by Node, matching the require() calls from extensions/vscode/scripts/.",
+  "type": "commonjs"
+}

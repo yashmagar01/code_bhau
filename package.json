@@ -1,219 +1,36 @@
 {
-  "name": "code-bhau",
-  "displayName": "Code Bhau",
-  "description": "Your supportive senior dev bhau — explains errors in Marathi, Hindi & English with beginner-friendly, witty fixes. 100% offline, no APIs, no AI code generation.",
-  "version": "1.0.0",
-  "publisher": "yashmagar",
-  "author": {
-    "name": "Yash Magar",
-    "email": "yashajaymagar10@gmail.com",
-    "url": "https://magar.xyz"
-  },
-  "contributors": [
-    {
-      "name": "Aryan Pohakar",
-      "url": "https://github.com/AryanPohakar20"
-    }
-  ],
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/yashmagar01/code_bhau.git"
-  },
-  "bugs": {
-    "url": "https://github.com/yashmagar01/code_bhau/issues"
-  },
-  "homepage": "https://github.com/yashmagar01/code_bhau#readme",
+  "name": "code-bhau-agent",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Code Bhau Agent — beginner-friendly AI coding agent. Forked from continuedev/continue under Apache-2.0.",
+  "license": "Apache-2.0",
+  "author": "Continue Dev, Inc (original); Code Bhau contributors (fork)",
+  "type": "module",
   "engines": {
-    "vscode": "^1.74.0"
+    "node": ">=20.20.1"
   },
-  "categories": [
-    "Other",
-    "Education",
-    "Debuggers"
+  "engine-strict": true,
+  "workspaces": [
+    "packages/terminal-security",
+    "core",
+    "gui",
+    "extensions/vscode"
   ],
-  "keywords": [
-    "errors",
-    "beginner",
-    "marathi",
-    "hindi",
-    "diagnostics",
-    "education",
-    "students",
-    "diploma",
-    "mentor",
-    "offline",
-    "maharashtra",
-    "india"
-  ],
-  "icon": "media/logo.png",
-  "galleryBanner": {
-    "color": "#1E1E2E",
-    "theme": "dark"
-  },
-  "main": "./out/extension.js",
-  "activationEvents": [
-    "onLanguage:typescript",
-    "onLanguage:javascript",
-    "onLanguage:typescriptreact",
-    "onLanguage:javascriptreact",
-    "onLanguage:json",
-    "onLanguage:jsonc",
-    "onLanguage:markdown",
-    "onLanguage:python",
-    "onLanguage:go",
-    "onLanguage:java",
-    "onStartupFinished"
-  ],
-  "contributes": {
-    "viewsContainers": {
-      "activitybar": [
-        {
-          "id": "codeBhau-view-container",
-          "title": "Code Bhau",
-          "icon": "media/sidebar-icon.svg"
-        }
-      ]
-    },
-    "views": {
-      "codeBhau-view-container": [
-        {
-          "type": "webview",
-          "id": "codeBhau.sidebar",
-          "name": "Bhau Says",
-          "icon": "media/sidebar-icon.svg",
-          "contextualTitle": "Code Bhau"
-        }
-      ]
-    },
-    "commands": [
-      {
-        "command": "codeBhau.refreshErrors",
-        "title": "Code Bhau: Refresh Latest Error",
-        "icon": "$(refresh)"
-      },
-      {
-        "command": "codeBhau.showLatestError",
-        "title": "Code Bhau: Show Latest Error",
-        "icon": "$(bug)"
-      },
-      {
-        "command": "codeBhau.testError",
-        "title": "Code Bhau: Demo With a Sample Error",
-        "icon": "$(beaker)"
-      },
-      {
-        "command": "codeBhau.switchLanguage",
-        "title": "Code Bhau: Switch Language",
-        "icon": "$(globe)"
-      },
-      {
-        "command": "codeBhau.copyFix",
-        "title": "Code Bhau: Copy First Suggested Fix",
-        "icon": "$(copy)"
-      }
-    ],
-    "menus": {
-      "view/title": [
-        {
-          "command": "codeBhau.refreshErrors",
-          "when": "view == codeBhau.sidebar",
-          "group": "navigation"
-        },
-        {
-          "command": "codeBhau.testError",
-          "when": "view == codeBhau.sidebar",
-          "group": "navigation"
-        }
-      ]
-    },
-    "keybindings": [
-      {
-        "command": "codeBhau.showLatestError",
-        "key": "ctrl+shift+b",
-        "mac": "cmd+shift+b"
-      },
-      {
-        "command": "codeBhau.testError",
-        "key": "ctrl+shift+alt+b",
-        "mac": "cmd+shift+alt+b"
-      }
-    ],
-    "configuration": {
-      "title": "Code Bhau",
-      "properties": {
-        "codeBhau.language": {
-          "type": "string",
-          "enum": [
-            "marathi",
-            "hindi",
-            "english"
-          ],
-          "enumDescriptions": [
-            "Bhau replies in Marathi (default — Pune style).",
-            "Bhau replies in Hindi.",
-            "Bhau replies in English."
-          ],
-          "default": "marathi",
-          "description": "Language Bhau uses for his responses."
-        },
-        "codeBhau.enableHover": {
-          "type": "boolean",
-          "default": true,
-          "description": "Show Bhau's explanation when you hover over a diagnostic error."
-        },
-        "codeBhau.enableSidebar": {
-          "type": "boolean",
-          "default": true,
-          "description": "Show Bhau's latest error explanation in the activity-bar sidebar."
-        },
-        "codeBhau.includeWarnings": {
-          "type": "boolean",
-          "default": false,
-          "description": "Also classify warnings (yellow squiggles), not just errors (red)."
-        },
-        "codeBhau.maxHistoryPerError": {
-          "type": "number",
-          "default": 5,
-          "minimum": 0,
-          "maximum": 10,
-          "description": "How many recent responses to remember per error family, to avoid repetition."
-        },
-        "codeBhau.hoverMessageFormat": {
-          "type": "string",
-          "enum": [
-            "compact",
-            "full"
-          ],
-          "enumDescriptions": [
-            "Shorter hover card — just title, one-liner and fixes.",
-            "Full hover card — title, response, meaning, fixes and category metadata."
-          ],
-          "default": "full",
-          "description": "Compactness of the hover explanation."
-        }
-      }
-    }
-  },
   "scripts": {
-    "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
-    "package": "vsce package --no-dependencies",
-    "publish": "vsce publish --no-dependencies",
-    "lint": "eslint src --ext ts",
-    "pretest": "npm run compile",
-    "smoke": "node test/smokeTest.js",
-    "test": "npm run compile && npm run smoke"
+    "clean": "rimraf \"./**/node_modules\" \"./**/dist\" \"./**/out\" \"./**/build\" 2>/dev/null || true",
+    "build:stub": "npm run build --workspace @continuedev/terminal-security",
+    "build:core": "npm run build --workspace core",
+    "build:gui": "npm run build --workspace gui",
+    "build:vscode": "npm run esbuild --workspace code-bhau",
+    "build": "npm run build:stub && npm run build:gui && npm run build:vscode",
+    "build:all": "npm run build:stub && npm run build:core && npm run build:gui && npm run build:vscode",
+    "tsc:check": "npm run tsc:check --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "package:vscode": "cd extensions/vscode && vsce package"
   },
   "devDependencies": {
-    "@types/node": "^18.15.0",
-    "@types/vscode": "^1.74.0",
-    "@typescript-eslint/eslint-plugin": "^6.0.0",
-    "@typescript-eslint/parser": "^6.0.0",
-    "@vscode/test-electron": "^2.3.0",
-    "eslint": "^8.45.0",
-    "typescript": "^5.1.0",
-    "@vscode/vsce": "^2.20.0"
+    "rimraf": "^5.0.5",
+    "typescript": "^5.6.3"
   }
 }
