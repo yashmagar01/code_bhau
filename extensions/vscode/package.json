@@ -1,11 +1,11 @@
 {
   "name": "code-bhau",
   "icon": "media/icon.png",
-  "author": "Continue Dev, Inc (original); Code Bhau contributors (fork)",
+  "author": "Continue Dev, Inc (original)",
   "version": "2.0.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/code-bhau/code-bhau-agent"
+    "url": "git+https://github.com/code-bhau/code-bhau-agent.git"
   },
   "extensionKind": [
     "ui",
@@ -83,7 +83,7 @@
       }
     ],
     "configuration": {
-      "title": "Continue",
+      "title": "Code Bhau",
       "properties": {
         "continue.telemetryEnabled": {
           "type": "boolean",
@@ -596,14 +596,14 @@
       "activitybar": [
         {
           "id": "continue",
-          "title": "Continue",
-          "icon": "media/sidebar-icon.png"
+          "title": "Code Bhau",
+          "icon": "media/sidebar-icon.svg"
         }
       ],
       "panel": [
         {
           "id": "continueConsole",
-          "title": "Continue Console",
+          "title": "Code Bhau Console",
           "icon": "$(window)"
         }
       ]
@@ -613,8 +613,8 @@
         {
           "type": "webview",
           "id": "continue.continueGUIView",
-          "name": "Continue",
-          "icon": "media/sidebar-icon.png",
+          "name": "Code Bhau",
+          "icon": "media/sidebar-icon.svg",
           "visibility": "visible"
         }
       ],
@@ -622,7 +622,7 @@
         {
           "type": "webview",
           "id": "continue.continueConsoleView",
-          "name": "Continue Console",
+          "name": "Code Bhau Console",
           "icon": "$(window)",
           "visibility": "visible",
           "when": "config.continue.enableConsole"

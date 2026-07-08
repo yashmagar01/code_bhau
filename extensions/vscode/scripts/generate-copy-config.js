@@ -11,15 +11,7 @@ const { execCmdSync } = require("../../../scripts/util");
 const { continueDir } = require("./utils");
 
 async function generateConfigYamlSchema() {
-  process.chdir(path.join(continueDir, "packages", "config-yaml"));
-  execCmdSync("npm install");
-  execCmdSync("npm run build");
-  execCmdSync("npm run generate-schema");
-  fs.copyFileSync(
-    path.join("schema", "config-yaml-schema.json"),
-    path.join(continueDir, "extensions", "vscode", "config-yaml-schema.json"),
-  );
-  console.log("[info] Generated config.yaml schema");
+  console.log("[info] Skipping config.yaml schema generation (not present in fork)");
 }
 
 async function copyConfigSchema() {
@@ -38,29 +30,7 @@ async function copyConfigSchema() {
   };
   fs.writeFileSync("continue_rc_schema.json", JSON.stringify(schema, null, 2));
 
-  // Copy config schemas to intellij
-  fs.copyFileSync(
-    "config_schema.json",
-    path.join(
-      "..",
-      "intellij",
-      "src",
-      "main",
-      "resources",
-      "config_schema.json",
-    ),
-  );
-  fs.copyFileSync(
-    "continue_rc_schema.json",
-    path.join(
-      "..",
-      "intellij",
-      "src",
-      "main",
-      "resources",
-      "continue_rc_schema.json",
-    ),
-  );
+  console.log("[info] Generated continue_rc_schema.json. Skipping copy to intellij as it may not exist in fork.");
 }
 
 process.on("message", (msg) => {

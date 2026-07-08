@@ -56,10 +56,17 @@ async function downloadSqlite(target, targetDir) {
 async function installAndCopySqlite(target) {
   // Replace the installed with pre-built
   console.log("[info] Downloading pre-built sqlite3 binary");
-  rimrafSync("../../core/node_modules/sqlite3/build");
-  await downloadSqlite(target, "../../core/node_modules/sqlite3/build.tar.gz");
-  execCmdSync("cd ../../core/node_modules/sqlite3 && tar -xvzf build.tar.gz");
-  fs.unlinkSync("../../core/node_modules/sqlite3/build.tar.gz");
+  let sqlitePath = "../../core/node_modules/sqlite3";
+  if (!fs.existsSync(sqlitePath)) {
+    sqlitePath = "../../node_modules/sqlite3";
+  }
+  const buildPath = path.join(sqlitePath, "build");
+  const archivePath = path.join(sqlitePath, "build.tar.gz");
+
+  rimrafSync(buildPath);
+  await downloadSqlite(target, archivePath);
+  execCmdSync(`cd ${sqlitePath} && tar -xvzf build.tar.gz`);
+  fs.unlinkSync(archivePath);
 }
 
 async function installAndCopyEsbuild(target) {

@@ -33,12 +33,11 @@ const path = require("path");
  * @returns {string} Trimmed stdout. Throws on non-zero exit.
  */
 function execCmdSync(cmd, opts = {}) {
-  return execSync(cmd, {
+  const result = execSync(cmd, {
     cwd: opts.cwd || process.cwd(),
     stdio: opts.stdio || "inherit",
-  })
-    .toString()
-    .trim();
+  });
+  return result ? result.toString().trim() : "";
 }
 
 /**
@@ -67,7 +66,7 @@ function validateFilesPresent(files) {
  * @returns {string} e.g. "darwin-arm64", "linux-x64", "win32-x64".
  */
 function autodetectPlatformAndArch() {
-  return `${process.platform}-${process.arch}`;
+  return [process.platform, process.arch];
 }
 
 module.exports = {

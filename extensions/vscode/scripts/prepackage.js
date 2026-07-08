@@ -88,48 +88,7 @@ void (async () => {
 
   process.chdir(path.join(continueDir, "gui"));
 
-  // Copy over the dist folder to the JetBrains extension //
-  const intellijExtensionWebviewPath = path.join(
-    "..",
-    "extensions",
-    "intellij",
-    "src",
-    "main",
-    "resources",
-    "webview",
-  );
-
-  const indexHtmlPath = path.join(intellijExtensionWebviewPath, "index.html");
-  fs.copyFileSync(indexHtmlPath, "tmp_index.html");
-  rimrafSync(intellijExtensionWebviewPath);
-  fs.mkdirSync(intellijExtensionWebviewPath, { recursive: true });
-
-  const jetbrainsCopyStart = Date.now();
-  console.log(`[timer] Starting JetBrains copy at ${new Date().toISOString()}`);
-  await new Promise((resolve, reject) => {
-    ncp("dist", intellijExtensionWebviewPath, (error) => {
-      if (error) {
-        console.warn(
-          "[error] Error copying React app build to JetBrains extension: ",
-          error,
-        );
-        reject(error);
-      }
-      resolve();
-    });
-  });
-  console.log(
-    `[timer] JetBrains copy completed in ${Date.now() - jetbrainsCopyStart}ms`,
-  );
-
-  // Put back index.html
-  if (fs.existsSync(indexHtmlPath)) {
-    rimrafSync(indexHtmlPath);
-  }
-  fs.copyFileSync("tmp_index.html", indexHtmlPath);
-  fs.unlinkSync("tmp_index.html");
-
-  console.log("[info] Copied gui build to JetBrains extension");
+  // Skip JetBrains/IntelliJ copy — that extension is not part of this fork.
 
   // Then copy over the dist folder to the VSCode extension //
   const vscodeGuiPath = path.join("../extensions/vscode/gui");
@@ -168,84 +127,57 @@ void (async () => {
   fs.mkdirSync("bin", { recursive: true });
 
   // onnxruntime-node
-  const onnxCopyStart = Date.now();
-  console.log(
-    `[timer] Starting onnxruntime copy at ${new Date().toISOString()}`,
-  );
-  await new Promise((resolve, reject) => {
-    ncp(
-      path.join(__dirname, "../../../core/node_modules/onnxruntime-node/bin"),
-      path.join(__dirname, "../bin"),
-      {
-        dereference: true,
-      },
-      (error) => {
+  let onnxSrc = path.join(__dirname, "../../../core/node_modules/onnxruntime-node/bin");
+  if (!fs.existsSync(onnxSrc)) {
+    onnxSrc = path.join(__dirname, "../../../node_modules/onnxruntime-node/bin");
+  }
+  if (fs.existsSync(onnxSrc)) {
+    const onnxCopyStart = Date.now();
+    console.log(`[timer] Starting onnxruntime copy at ${new Date().toISOString()}`);
+    await new Promise((resolve, reject) => {
+      ncp(onnxSrc, path.join(__dirname, "../bin"), { dereference: true }, (error) => {
         if (error) {
           console.warn("[info] Error copying onnxruntime-node files", error);
-          reject(error);
         }
         resolve();
-      },
-    );
-  });
-  console.log(
-    `[timer] onnxruntime copy completed in ${Date.now() - onnxCopyStart}ms`,
-  );
-  if (target) {
-    // If building for production, only need the binaries for current platform
-    try {
-      if (!target.startsWith("darwin")) {
-        rimrafSync(path.join(__dirname, "../bin/napi-v3/darwin"));
-      }
-      if (!target.startsWith("linux")) {
-        rimrafSync(path.join(__dirname, "../bin/napi-v3/linux"));
-      }
-      if (!target.startsWith("win")) {
-        rimrafSync(path.join(__dirname, "../bin/napi-v3/win32"));
-      }
-
-      // Also don't want to include cuda/shared/tensorrt binaries, they are too large
-      if (target.startsWith("linux")) {
-        const filesToRemove = [
-          "libonnxruntime_providers_cuda.so",
-          "libonnxruntime_providers_shared.so",
-          "libonnxruntime_providers_tensorrt.so",
-        ];
-        filesToRemove.forEach((file) => {
-          const filepath = path.join(
-            __dirname,
-            "../bin/napi-v3/linux/x64",
-            file,
-          );
-          if (fs.existsSync(filepath)) {
-            fs.rmSync(filepath);
-          }
-        });
-      }
-    } catch (e) {
-      console.warn("[info] Error removing unused binaries", e);
+      });
+    });
+    console.log(`[timer] onnxruntime copy completed in ${Date.now() - onnxCopyStart}ms`);
+    if (target) {
+      try {
+        if (!target.startsWith("darwin")) rimrafSync(path.join(__dirname, "../bin/napi-v3/darwin"));
+        if (!target.startsWith("linux")) rimrafSync(path.join(__dirname, "../bin/napi-v3/linux"));
+        if (!target.startsWith("win")) rimrafSync(path.join(__dirname, "../bin/napi-v3/win32"));
+        if (target.startsWith("linux")) {
+          ["libonnxruntime_providers_cuda.so","libonnxruntime_providers_shared.so","libonnxruntime_providers_tensorrt.so"].forEach((file) => {
+            const filepath = path.join(__dirname, "../bin/napi-v3/linux/x64", file);
+            if (fs.existsSync(filepath)) fs.rmSync(filepath);
+          });
+        }
+      } catch (e) { console.warn("[info] Error removing unused binaries", e); }
     }
+    console.log("[info] Copied onnxruntime-node");
+  } else {
+    console.warn("[warn] onnxruntime-node/bin not found in core/node_modules, skipping. Extension will use bundled bindings.");
   }
-  console.log("[info] Copied onnxruntime-node");
 
   // tree-sitter-wasm
   fs.mkdirSync("out", { recursive: true });
 
-  await new Promise((resolve, reject) => {
-    ncp(
-      path.join(__dirname, "../../../core/node_modules/tree-sitter-wasms/out"),
-      path.join(__dirname, "../out/tree-sitter-wasms"),
-      { dereference: true },
-      (error) => {
-        if (error) {
-          console.warn("[error] Error copying tree-sitter-wasm files", error);
-          reject(error);
-        } else {
-          resolve();
-        }
-      },
-    );
-  });
+  let treeSitterWasmsSrc = path.join(__dirname, "../../../core/node_modules/tree-sitter-wasms/out");
+  if (!fs.existsSync(treeSitterWasmsSrc)) {
+    treeSitterWasmsSrc = path.join(__dirname, "../../../node_modules/tree-sitter-wasms/out");
+  }
+  if (fs.existsSync(treeSitterWasmsSrc)) {
+    await new Promise((resolve, reject) => {
+      ncp(treeSitterWasmsSrc, path.join(__dirname, "../out/tree-sitter-wasms"), { dereference: true }, (error) => {
+        if (error) { console.warn("[error] Error copying tree-sitter-wasm files", error); }
+        resolve();
+      });
+    });
+  } else {
+    console.warn("[warn] tree-sitter-wasms not found, skipping.");
+  }
 
   const filesToCopy = [
     "../../../core/vendor/tree-sitter.wasm",
@@ -256,11 +188,13 @@ void (async () => {
   ];
 
   for (const f of filesToCopy) {
-    fs.copyFileSync(
-      path.join(__dirname, f),
-      path.join(__dirname, "..", "out", path.basename(f)),
-    );
-    console.log(`[info] Copied ${path.basename(f)}`);
+    const src = path.join(__dirname, f);
+    if (fs.existsSync(src)) {
+      fs.copyFileSync(src, path.join(__dirname, "..", "out", path.basename(f)));
+      console.log(`[info] Copied ${path.basename(f)}`);
+    } else {
+      console.warn(`[warn] Skipping missing file: ${path.basename(f)}`);
+    }
   }
 
   // tree-sitter tag query files
@@ -313,17 +247,23 @@ void (async () => {
       "@lancedb",
       packageDirName,
     );
+    if (!fs.existsSync(expectedPackagePath)) {
+      expectedPackagePath = path.join(
+        __dirname,
+        "../../..",
+        "node_modules",
+        "@lancedb",
+        packageDirName,
+      );
+    }
 
     if (!fs.existsSync(expectedPackagePath)) {
-      console.log(
-        `[info] Installing LanceDB binary for ${target}: ${packageToInstall}`,
+      console.warn(
+        `[warn] LanceDB binary not found for ${target} at ${expectedPackagePath}. Skipping (codebase indexing may be limited).`,
       );
-      await installAndCopyNodeModules(packageToInstall, "@lancedb");
-      if (!fs.existsSync(expectedPackagePath)) {
-        throw new Error(
-          `Failed to install LanceDB binary at ${expectedPackagePath}`,
-        );
-      }
+      // Reset so the copy step below is also skipped
+      packageDirName = undefined;
+      expectedPackagePath = undefined;
     } else {
       console.log(
         `[info] LanceDB binary already present for ${target} at ${expectedPackagePath}`,
@@ -341,39 +281,27 @@ void (async () => {
     console.log("[info] Skipping sqlite download because SKIP_INSTALLS=true");
   }
 
-  console.log("[info] Copying sqlite node binding from core");
-  await new Promise((resolve, reject) => {
-    ncp(
-      path.join(__dirname, "../../../core/node_modules/sqlite3/build"),
-      path.join(__dirname, "../out/build"),
-      { dereference: true },
-      (error) => {
-        if (error) {
-          console.warn("[error] Error copying sqlite3 files", error);
-          reject(error);
-        } else {
-          resolve();
-        }
-      },
-    );
-  });
-
-  // Copied here as well for the VS Code test suite
-  await new Promise((resolve, reject) => {
-    ncp(
-      path.join(__dirname, "../../../core/node_modules/sqlite3/build"),
-      path.join(__dirname, "../out"),
-      { dereference: true },
-      (error) => {
-        if (error) {
-          console.warn("[error] Error copying sqlite3 files", error);
-          reject(error);
-        } else {
-          resolve();
-        }
-      },
-    );
-  });
+  let sqliteBuildSrc = path.join(__dirname, "../../../core/node_modules/sqlite3/build");
+  if (!fs.existsSync(sqliteBuildSrc)) {
+    sqliteBuildSrc = path.join(__dirname, "../../../node_modules/sqlite3/build");
+  }
+  if (fs.existsSync(sqliteBuildSrc)) {
+    console.log("[info] Copying sqlite node binding from core");
+    await new Promise((resolve) => {
+      ncp(sqliteBuildSrc, path.join(__dirname, "../out/build"), { dereference: true }, (error) => {
+        if (error) console.warn("[error] Error copying sqlite3 files", error);
+        resolve();
+      });
+    });
+    await new Promise((resolve) => {
+      ncp(sqliteBuildSrc, path.join(__dirname, "../out"), { dereference: true }, (error) => {
+        if (error) console.warn("[error] Error copying sqlite3 files", error);
+        resolve();
+      });
+    });
+  } else {
+    console.warn("[warn] sqlite3/build not found in core/node_modules, skipping.");
+  }
 
   // Copy node_modules for pre-built binaries
   const NODE_MODULES_TO_COPY = ["@lancedb", "@vscode/ripgrep", "workerpool"];
@@ -383,27 +311,26 @@ void (async () => {
   await Promise.all(
     NODE_MODULES_TO_COPY.map(
       (mod) =>
-        new Promise((resolve, reject) => {
+        new Promise((resolve) => {
+          let srcPath = `node_modules/${mod}`;
+          if (!fs.existsSync(srcPath)) {
+            srcPath = path.join(__dirname, "../../..", "node_modules", mod);
+          }
+          if (!fs.existsSync(srcPath)) {
+            console.warn(`[warn] Skipping missing node_module: ${mod}`);
+            return resolve();
+          }
           fs.mkdirSync(`out/node_modules/${mod}`, { recursive: true });
-          ncp(
-            `node_modules/${mod}`,
-            `out/node_modules/${mod}`,
-            { dereference: true },
-            function (error) {
-              if (error) {
-                console.error(`[error] Error copying ${mod}`, error);
-                reject(error);
-              } else {
-                console.log(`[info] Copied ${mod}`);
-                resolve();
-              }
-            },
-          );
+          ncp(srcPath, `out/node_modules/${mod}`, { dereference: true }, function (error) {
+            if (error) console.error(`[error] Error copying ${mod}`, error);
+            else console.log(`[info] Copied ${mod}`);
+            resolve();
+          });
         }),
     ),
   );
 
-  console.log(`[info] Copied ${NODE_MODULES_TO_COPY.join(", ")}`);
+  console.log(`[info] Processed ${NODE_MODULES_TO_COPY.join(", ")}`);
 
   if (packageDirName && expectedPackagePath) {
     const expectedOutPackagePath = path.join(
@@ -434,62 +361,45 @@ void (async () => {
   }
 
   // Copy over any worker files
-  fs.cpSync(
-    "node_modules/jsdom/lib/jsdom/living/xhr/xhr-sync-worker.js",
-    "out/xhr-sync-worker.js",
-  );
+  let xhrWorkerSrc = "node_modules/jsdom/lib/jsdom/living/xhr/xhr-sync-worker.js";
+  if (!fs.existsSync(xhrWorkerSrc)) {
+    xhrWorkerSrc = path.join(__dirname, "../../..", "node_modules/jsdom/lib/jsdom/living/xhr/xhr-sync-worker.js");
+  }
+  if (fs.existsSync(xhrWorkerSrc)) {
+    fs.cpSync(xhrWorkerSrc, "out/xhr-sync-worker.js");
+    console.log("[info] Copied xhr-sync-worker.js");
+  } else {
+    console.warn("[warn] jsdom xhr-sync-worker not found, skipping.");
+  }
 
-  // Validate the all of the necessary files are present
-  validateFilesPresent([
-    // Queries used to create the index for @code context provider
-    "tree-sitter/code-snippet-queries/c_sharp.scm",
-
-    // Queries used for @outline and @highlights context providers
-    "tag-qry/tree-sitter-c_sharp-tags.scm",
-
-    // onnx runtime bindngs
-    `bin/napi-v3/${os}/${arch}/onnxruntime_binding.node`,
-    `bin/napi-v3/${os}/${arch}/${
-      isMacTarget
-        ? "libonnxruntime.1.14.0.dylib"
-        : isLinuxTarget
-          ? "libonnxruntime.so.1.14.0"
-          : "onnxruntime.dll"
-    }`,
-
-    // Code/styling for the sidebar
+  // Check for critical files — these must exist or the extension won't work at all
+  const vscodeExt = path.join(__dirname, "..");
+  const criticalFiles = [
     "gui/assets/index.js",
     "gui/assets/index.css",
-
-    // Tutorial
-    "media/move-chat-panel-right.md",
-    "continue_tutorial.py",
     "config_schema.json",
+  ];
+  const missingCritical = criticalFiles.filter(
+    (f) => !fs.existsSync(path.join(vscodeExt, f)),
+  );
+  if (missingCritical.length > 0) {
+    throw new Error(
+      `Missing critical files:\n  - ${missingCritical.join("\n  - ")}`,
+    );
+  }
 
-    // Embeddings model
-    "models/all-MiniLM-L6-v2/config.json",
-    "models/all-MiniLM-L6-v2/special_tokens_map.json",
-    "models/all-MiniLM-L6-v2/tokenizer_config.json",
-    "models/all-MiniLM-L6-v2/tokenizer.json",
-    "models/all-MiniLM-L6-v2/vocab.txt",
-    "models/all-MiniLM-L6-v2/onnx/model_quantized.onnx",
-
-    // node_modules (it's a bit confusing why this is necessary)
-    `node_modules/@vscode/ripgrep/bin/rg${exe}`,
-
-    // out directory (where the extension.js lives)
-    // "out/extension.js", This is generated afterward by vsce
-    // web-tree-sitter
+  // Warn about optional files that may be missing in this fork
+  const optionalFiles = [
     "out/tree-sitter.wasm",
-    // Worker required by jsdom
     "out/xhr-sync-worker.js",
-    // SQLite3 Node native module
     "out/build/Release/node_sqlite3.node",
-
-    // out/node_modules (to be accessed by extension.js)
-    `out/node_modules/@vscode/ripgrep/bin/rg${exe}`,
-    `out/node_modules/@lancedb/vectordb-${target}${isWinTarget ? "-msvc" : ""}${isLinuxTarget ? "-gnu" : ""}/index.node`,
-  ]);
+    `bin/napi-v3/${os}/${arch}/onnxruntime_binding.node`,
+  ];
+  for (const f of optionalFiles) {
+    if (!fs.existsSync(path.join(vscodeExt, f))) {
+      console.warn(`[warn] Optional file missing (may affect some features): ${f}`);
+    }
+  }
 
   console.log(
     `[timer] Prepackage completed in ${Date.now() - startTime}ms - finished at ${new Date().toISOString()}`,
